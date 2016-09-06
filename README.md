@@ -19,44 +19,44 @@
 * 构建时可对静态资源生成mini文件副本
 
 ## 文件说明
-  ├── Readme.md                   // 使用说明
-├── dist                        // 构建后的项目，config.js配置
-│   ├── html                    // 构建后的html文件目录，config.js配置
-│   │   ├── app1/mod1
-│   │   │   ├── index.html
-│   │   │   ├── header.html
-│   │   │   ├── footer.html
-│   │   ├── app2/mod2
-│   │   │   ├── index.html
-│   │   │   ├── header.html
-│   │   │   ├── footer.html
-│   ├── static                  // 构建后的静态资源目录，config.js配置
-├── docs                        // JS说明文档目录，jsdoc.json配置
-│   ├── ...                     // jsdoc.json配置
-├── node_modules                // 工具运行依赖的模块
-├── src                         // 项目源码，config.js配置
-│   ├── html                    // config.js配置
-│   ├── static                  // config.js配置
-├── config                      // 配置
-│   ├── default.json
-│   ├── dev.json                // 开发环境
-│   ├── experiment.json         // 实验
-│   ├── index.js                // 配置控制
-│   ├── local.json              // 本地
-│   ├── production.json         // 生产环境
-│   └── test.json               // 测试环境
-├── data
-├── doc                         // 文档
-├── environment
-├── gulpfile.js
-├── locales
-├── logger-service.js           // 启动日志配置
-├── node_modules
-├── package.json
-├── app-service.js              // 启动应用配置
-├── static                      // web静态资源加载
-│   └── initjson
-│   	└── config.js 		// 提供给前端的配置
-├── test
-├── test-service.js
-└── tools
+├── Readme.md                   // 使用说明<br>
+├── dist                        // 构建后的项目，config.js配置<br>
+│   ├── html                    // 构建后的html文件目录，config.js配置<br>
+│   │   ├── app1/mod1<br>
+│   │   │   ├── index.html<br>
+│   │   │   ├── header.html<br>
+│   │   │   ├── footer.html<br>
+│   │   ├── app2/mod2<br>
+│   │   │   ├── index.html<br>
+│   │   │   ├── header.html<br>
+│   │   │   ├── footer.html<br>
+│   ├── static                  // 构建后的静态资源目录，config.js配置<br>
+├── docs                        // JS说明文档目录，jsdoc.json配置<br>
+│   ├── ...                     // jsdoc.json配置<br>
+├── node_modules                // 工具运行依赖的模块<br>
+├── src                         // 项目源码，config.js配置<br>
+│   ├── html                    // config.js配置<br>
+│   ├── static                  // config.js配置<br>
+├── config                      // 配置<br>
+│   ├── default.json<br>
+│   ├── dev.json                // 开发环境<br>
+│   ├── experiment.json         // 实验<br>
+│   ├── index.js                // 配置控制<br>
+│   ├── local.json              // 本地<br>
+│   ├── production.json         // 生产环境<br>
+│   └── test.json               // 测试环境<br>
+├── data<br>
+├── doc                         // 文档<br>
+├── environment<br>
+├── gulpfile.js<br>
+├── locales<br>
+├── logger-service.js           // 启动日志配置<br>
+├── node_modules<br>
+├── package.json<br>
+├── app-service.js              // 启动应用配置<br>
+├── static                      // web静态资源加载<br>
+│   └── initjson<br>
+│   	└── config.js 		// 提供给前端的配置<br>
+├── test<br>
+├── test-service.js<br>
+└── tools<br>
