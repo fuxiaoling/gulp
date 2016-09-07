@@ -21,16 +21,16 @@
 ## 文件说明
 ├── Readme.md                   // 使用说明  
 ├── dist                        // 构建后的项目，config.js配置  
-│   ├── html                    // 构建后的html文件目录，config.js配置<br>
-│   │   ├── app1/mod1           <br>
-│   │   │   ├── index.html      <br>
-│   │   │   ├── header.html     <br>
-│   │   │   ├── footer.html     <br>
-│   │   ├── app2/mod2<br>
-│   │   │   ├── index.html<br>
-│   │   │   ├── header.html<br>
-│   │   │   ├── footer.html<br>
-│   ├── static                  // 构建后的静态资源目录，config.js配置<br>
+│   ├── html                    // 构建后的html文件目录，config.js配置  
+│   │   ├── app1/mod1             
+│   │   │   ├── index.html        
+│   │   │   ├── header.html       
+│   │   │   ├── footer.html        
+│   │   ├── app2/mod2  
+│   │   │   ├── index.html  
+│   │   │   ├── header.html  
+│   │   │   ├── footer.html   
+│   ├── static                  // 构建后的静态资源目录，config.js配置  
 ├── docs                        // JS说明文档目录，jsdoc.json配置<br>
 │   ├── ...                     // jsdoc.json配置<br>
 ├── node_modules                // 工具运行依赖的模块<br>
