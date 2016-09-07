@@ -20,26 +20,26 @@
 
 ## 文件说明
 ```├── Readme.md```                   // 使用说明  
-├── dist                        // 构建后的项目，config.js配置  
-│   ├── html                    // 构建后的html文件目录，config.js配置  
-│   │   ├── app1/mod1           // 可以为多级,根据src目录生成  
-│   │   │   ├── index.html        
-│   │   │   ├── header.html       
-│   │   │   ├── footer.html        
-│   │   ├── app2/mod2           // 可以为多级,根据src目录生成  
-│   │   │   ├── index.html  
-│   │   │   ├── header.html  
-│   │   │   ├── footer.html   
-│   ├── static                  // 构建后的静态资源目录，config.js配置  
-│   │   ├── libs                // 第三方资源包  
-│   │   │   ├── CMD             // CMD模式（seajs）的第三方资源  
-│   │   │   │   ├── seajs                     // 第三方资源:seajs及周边工具目录  
-│   │   │   │   ├── arale                     // 第三方资源:arale目录  
-│   │   │   │   │   ├── popup                 // 第三方资源:arale下的popup工具目录  
-│   │   │   │   │   │   ├── 1.1.6             // 第三方资源:arale下的popup工具下的版本目录    
-│   │   │   │   │   │   │   ├── popup.js      // 第三方资源:arale下的popup工具下的版本目录内包含的工具文件  
-│   │   │   │   ├── ...                       // 其他CMD模式的第三方资源  
-│   │   │   ├── AMD             // AMD模式(requireJs)的第三方资源    
+```├── dist```                        // 构建后的项目，config.js配置  
+```│   ├── html```                    // 构建后的html文件目录，config.js配置  
+```│   │   ├── app1/mod1```           // 可以为多级,根据src目录生成  
+```│   │   │   ├── index.html```        
+```│   │   │   ├── header.html```       
+```│   │   │   ├── footer.html```        
+```│   │   ├── app2/mod2```           // 可以为多级,根据src目录生成  
+```│   │   │   ├── index.html```  
+```│   │   │   ├── header.html```  
+```│   │   │   ├── footer.html```   
+```│   ├── static```                  // 构建后的静态资源目录，config.js配置  
+```│   │   ├── libs```                // 第三方资源包  
+```│   │   │   ├── CMD```             // CMD模式（seajs）的第三方资源  
+```│   │   │   │   ├── seajs```                     // 第三方资源:seajs及周边工具目录  
+```│   │   │   │   ├── arale```                     // 第三方资源:arale目录  
+```│   │   │   │   │   ├── popup```                 // 第三方资源:arale下的popup工具目录  
+```│   │   │   │   │   │   ├── 1.1.6```             // 第三方资源:arale下的popup工具下的版本目录    
+```│   │   │   │   │   │   │   ├── popup.js```      // 第三方资源:arale下的popup工具下的版本目录内包含的工具文件  
+```│   │   │   │   ├── ...```                       // 其他CMD模式的第三方资源  
+```│   │   │   ├── AMD```             // AMD模式(requireJs)的第三方资源    
 │   │   │   │   ├── requirejs                 // 第三方资源:requirejs及周边工具目录  
 │   │   │   │   ├── ...                       // 其他AMD模式的第三方资源，结构按照上面arale例子存放  
 │   │   │   ├── NORM            // 标准、常态的第三方资源  
