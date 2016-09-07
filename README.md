@@ -19,13 +19,13 @@
 * 构建时可对静态资源生成mini文件副本
 
 ## 文件说明
-├── Readme.md                   // 使用说明<br>
-├── dist                        // 构建后的项目，config.js配置<br>
+├── Readme.md                   // 使用说明  
+├── dist                        // 构建后的项目，config.js配置  
 │   ├── html                    // 构建后的html文件目录，config.js配置<br>
-│   │   ├── app1/mod1<br>
-│   │   │   ├── index.html<br>
-│   │   │   ├── header.html<br>
-│   │   │   ├── footer.html<br>
+│   │   ├── app1/mod1           <br>
+│   │   │   ├── index.html      <br>
+│   │   │   ├── header.html     <br>
+│   │   │   ├── footer.html     <br>
 │   │   ├── app2/mod2<br>
 │   │   │   ├── index.html<br>
 │   │   │   ├── header.html<br>
