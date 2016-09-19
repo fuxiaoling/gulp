@@ -1,0 +1,88 @@
+/*! define select-debug.css */
+/* alice.select 样式模块 */
+.select a,
+.select-trigger {
+  color: #555;
+  font-size: 12px;
+  text-decoration: none;
+}
+.select a:hover,
+.select-trigger:hover {
+  text-decoration: none;
+}
+.select {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  background: #fff;
+  color: #555;
+  font-size: 12px;
+}
+.select-content {
+  margin: -1px 0 0;
+  padding: 0;
+  overflow: auto;
+  height: 100%;
+  list-style: none;
+  border: 1px solid #dedede;
+  _float: left;
+}
+.select-content ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.select-item {
+  display: block;
+  padding: 3px 15px;
+  cursor: pointer;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.select-item:hover,
+.select-item-hover {
+  background: #f2f2f2;
+}
+.select-item-disabled,
+.select-item-disabled a {
+  cursor: not-allowed;
+  color: #ccc;
+}
+.select-item-disabled:hover,
+.select-item-disabled a:hover {
+  background: #fff;
+}
+.select-trigger {
+  position: relative;
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  border: 1px solid #dedede;
+  height: 24px;
+  line-height: 24px;
+  text-indent: 15px;
+  background: #f3f3f3;
+  background: -webkit-linear-gradient(top, #fbfbfb, #f3f3f3);
+  background: -moz-linear-gradient(top, #fbfbfb, #f3f3f3);
+  filter: progid:DXImageTransform.Microsoft.Gradient(startColorstr=#fbfbfb, endColorstr=#f3f3f3);
+}
+.select-trigger i {
+  position: absolute;
+  top: 0px;
+  right: 15px;
+  line-height: 24px;
+  text-indent: 0;
+  font-size: 12px;
+  cursor: pointer;
+}
+.select-trigger:hover {
+  border: 1px solid #ccc;
+}
+.select .select-trigger {
+  display: block;
+}
+.select-disabled,
+.select .select-disabled {
+  color: #aaa;
+  cursor: not-allowed;
+}

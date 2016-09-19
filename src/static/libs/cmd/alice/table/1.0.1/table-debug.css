@@ -1,0 +1,59 @@
+/*! define alice/table/1.0.1/table-debug.css */
+/* alice.table 样式模块 */
+
+.table {
+    border-collapse:collapse;
+    border:1px solid #ccc;
+    width:100%;
+    font-size: 12px;
+    text-align: left;    
+}
+.table tr:nth-child(even),
+.table-split /* 隔行换色效果 */,
+.table-hover /* 用作表格行hover效果 */ {    
+    background-color:#FBFBFB;
+}
+.table tr {
+    color:#808080;
+}
+.table thead tr {
+    color:#666;
+}
+.table thead {
+    color:#666;
+    background-color: #F6F6F6;    
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F8F8F8', endColorstr='#F2F2F2');
+    background: -webkit-gradient(linear, left top, left bottom, from(#F8F8F8), to(#F2F2F2));
+    background: -moz-linear-gradient(top, #F8F8F8, #F2F2F2);
+    background: -o-linear-gradient(top, #F8F8F8, #F2F2F2);
+    background: linear-gradient(top, #F8F8F8, #F2F2F2);
+}
+.table th {
+    padding:7px 9px;
+    border-bottom:1px solid #d9d9d9;
+    text-align: left;    
+}
+.table td {
+    padding:8px 9px 7px;
+    border-bottom:1px solid #d9d9d9;
+}
+.table th {
+    padding:7px 9px;
+}
+.table tfoot td {
+    border-bottom:none;
+}
+
+/* 无边框table加上table-noborder */
+.table-noborder, .table-noborder td, .table-noborder tr, .table-noborder th {
+    border:none;
+    outline:none;
+}
+.table-noborder .table-split, .table-noborder .table-hover {
+    background-color:#f7f7f7;
+}
+/* 当table放在一个有边框的容器中时，比如box，需要添加类名table-inbox去掉本身的外框 */
+.table-inbox {
+    border:none;
+    outline:none;
+}

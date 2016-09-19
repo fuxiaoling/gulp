@@ -1,0 +1,143 @@
+html,
+body {
+    background-color: #fff;
+}
+.page{
+    background-color: #ede6c9;
+}
+.content {
+    margin: 0;
+    background: #ede6c9;
+}
+
+.container {
+    width: 100%;
+    height: auto;
+    background: url('../img/red-envelope-bg.png') no-repeat;
+    background-size: 100% auto;
+    position: relative;
+}
+
+.container .phone-input {
+    position: absolute;
+    width: 82.8125%;
+    height: 13.85642737896494%;
+    left: 8.59375%;
+    bottom: 20.86811352253756%;
+}
+
+.container .phone-input label.placeholder {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #999;
+    cursor: inherit;
+}
+
+.container .phone-input span.icon {
+    position: absolute;
+    display: block;
+    margin-left: .7rem;
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+.container .phone-input input {
+    border: none;
+}
+
+.container .phone-input input.input {
+    padding: 0 5%;
+    width: 100%;
+    height: 100%;
+    border-radius: .4rem;
+    text-align: center;
+    font-size: 1rem;
+}
+
+.container a.submit-button {
+    position: absolute;
+    width: 82.8125%;
+    height: 13.85642737896494%;
+    left: 8.59375%;
+    bottom: 04.17362270450751%;
+    color: #666;
+    text-align: center;
+    cursor: pointer;
+}
+
+.success,
+.invite {
+    display: none;
+    width: 100%;
+    height: 100%;
+    position: relative;
+    z-index:99;
+}
+
+.success .mask-layer,
+.invite .mask-layer {
+    width: 100%;
+    height: 100%;
+    background-color: #000;
+    filter: alpha(opacity=80);
+    -moz-opacity: 0.8;
+    -khtml-opacity: 0.8;
+    opacity: 0.8;
+}
+
+.success .success-box,
+.invite .invite-box {
+    position: absolute;
+    width: 92.1875%;
+    height:auto;
+    left: 50%;
+    top: 50%;
+    margin-left: -150px;
+    margin-top: -150px;
+    background: #fff url(../img/red-envelope-success.png) no-repeat;
+    background-size: 100% auto;
+    border-radius: .4rem;
+}
+.invite .invite-box {
+    background: #fff url(../img/red-envelope-invite.png) no-repeat;
+    background-size: 100% auto;
+}
+
+.success .success-box a.box-close,
+.invite .invite-box a.box-close{
+	position: absolute;
+	display: block;
+	width:10.61486486486486%;
+	height:12.39823008849558%;
+	right:.5rem;
+}
+.success .success-box .box-content,
+.invite .invite-box .box-content{
+	text-align: center;
+	margin-top: 27.61061946902655%;
+	color:#666;
+	font-size: .85rem;
+}
+.success .success-box .box-content span,
+.invite .invite-box .box-content span{
+	font-size: 1rem;
+	line-height: 2rem;
+	color:#333;
+	display: block;
+}
+.success .success-box .box-content span i,
+.invite .invite-box .box-content span i{
+	color:#f60;
+}
+.success .success-box a.success-action,
+.invite .invite-box a.invite-action{
+	position: absolute;
+	display: block;
+	width:100%;
+	height:18.36283185840708%;
+	text-align: center;
+	color:#fff;
+	bottom:6.85840707964602%;
+}

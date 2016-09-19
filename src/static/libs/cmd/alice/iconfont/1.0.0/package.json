@@ -1,0 +1,21 @@
+{
+    "name": "iconfont",
+    "version": "1.0.0",
+    "family": "alice",
+    "description": "一套简单实用的 iconfont 集合。",
+    "homepage": "http://site.alipay.im/rei/",
+    "author": "",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/aliceui/iconfont"
+    },
+    "bugs": {
+        "url": "http://github.com/aliceui/iconfont/issues"
+    },
+    "license": "MIT",
+    "spm": {
+        "alias": {
+        },
+        "output": ["iconfont.css"]
+    }
+}

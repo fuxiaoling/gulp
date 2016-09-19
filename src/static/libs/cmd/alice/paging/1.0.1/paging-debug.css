@@ -1,0 +1,132 @@
+/*! define alice/paging/1.0.0/paging-debug.css */
+/* alice.paging 样式模块 */
+
+@charset "utf-8";
+
+.paging, .paging input {
+    color:#808080;
+    margin: 0;
+    padding: 0;
+    zoom: 1;
+    font-size: 12px;
+    vertical-align: middle;
+}
+
+.paging:after {
+    clear: both;
+    content: " ";
+    display: block;
+    font-size: 0;
+    height: 0;
+    visibility: hidden;
+}
+
+.paging a,
+.paging span.paging-prev,
+.paging span.paging-next {
+    text-decoration:none;
+    color:#808080;
+    margin:0 3px;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: middle;
+    height:22px;
+    line-height:22px;
+}
+
+.paging-prev,
+.paging-next,
+.paging-goto {
+    background-color: #F9F9F9;
+    background: -webkit-gradient(linear, left top, left bottom, from(#FEFEFE), to(#F4F4F4));
+    background: -moz-linear-gradient(top, #FEFEFE, #F4F4F4);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FEFEFE', endColorstr='#F4F4F4');
+    background:-o-linear-gradient(top, #FEFEFE, #F4F4F4);
+    background: linear-gradient(top, #FEFEFE, #F4F4F4); 
+    padding:0 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 0 0 1px #fff inset;
+}
+
+.paging-prev:hover,
+.paging-next:hover,
+.paging-goto:hover {
+    border-color: #999;
+    color: #666;
+}
+
+.paging-prev:hover .iconfont,
+.paging-next:hover .iconfont {
+    color: #666;
+}
+
+.paging .paging-prev {
+    margin: 0 3px 0 0;
+}
+
+.paging .iconfont {
+    font-size: 10px;
+    color: #787878;
+}
+
+.paging a.paging-item {
+    background-color:#f3f3f3;
+    font-weight:bold;
+    padding:0 8px;
+    border:none;    
+}
+
+.paging a.paging-current, .paging a.paging-item:hover {
+    color:#fff;
+    background:#ff9c00;
+}
+
+a.paging-prev:hover,
+a.paging-next:hover {    
+    text-decoration:none;
+    color:#666;
+}
+
+.paging-info {
+    line-height:24px;
+    margin-right:5px;
+    height:24px;
+}
+
+.paging-ellipsis {
+    margin:0 5px;
+    line-height: 16px;
+    font-weight:bold;
+}
+
+.paging-which input {
+    height: 20px;
+    line-height: 20px;
+    padding: 0 6px;
+    width:22px;
+    border:1px solid;
+    border-color:#aaa #d1d1d1 #d1d1d1 #aaa;
+}
+
+.paging-which input:hover {
+    border-color:#999;
+    color:#666;
+}
+
+.paging-bold {
+    font-weight:bold;
+    padding:0 8px;
+}
+
+.paging span.paging-prev,
+.paging span.paging-next,
+.paging span.paging-prev .iconfont,
+.paging span.paging-next .iconfont {    
+    color:#fff;
+    box-shadow:none;
+    background: #d4d4d4;
+    border-color: #d4d4d4;
+    filter: none;
+}

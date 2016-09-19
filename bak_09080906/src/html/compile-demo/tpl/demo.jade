@@ -1,0 +1,71 @@
+//- 参数型重用块
+mixin list(param)
+  ul.list-ul
+    - each key in param
+      li= key
+
+
+
+
+doctype html
+html(lang='zh-cmn-Hans')
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width,initial-scale=1,user-scalable=0")
+    title jade模板演示
+    meta(name="keywords", content="页面关键词")
+    meta(name="description", content="页面描述")
+    link(rel='stylesheet', href='css/demo.css')
+    style.
+      h1{display:block; width:100%; height:40px; line-height:40px; font-size:18px; border-bottom:1px solid #dedede;}
+      h2{display:block; width:100%; height:30px; line-height:30px; font-size:16px; border-bottom:1px solid #dedede;}
+  body
+    h1 参数型变量-复用块23466666
+    div.demo-list
+      +list(['a','b','c','d'])
+
+    h1 使用变量和if判断
+    - var s = {name:'豆豆',sex:'男',schoolAge:false }
+    - var o = '上面是判断演示'
+    - if (s.name)
+        p 名字:#{s.name}
+    - if (s.sex === '女')
+        p 性别:女
+    - else
+        p 性别:#{s.sex}
+    - if (s.schoolAge)
+        p 已到学龄
+    unless (s.schoolAge)
+        p 还不到学龄
+    p #{o}
+
+    h1 for循环
+    - var array = [1,2,3]
+    div.demo-list
+      ul
+        - for (var i = 0; i < array.length; ++i) {
+          li hello #{array[i]}
+        - }
+
+    h1 each遍历
+    - var array = [1,2,3]
+    div.demo-list
+      ul
+        - each val,index in ['西瓜', '苹果', '梨子']
+          li= index + ': ' + val
+
+
+    h1 case判断
+    - var friends = 1
+    case friends
+      when 0: p you have no friends
+      when 1: p you have a friend
+      default: p you have #{friends} friends
+
+    h1 es6-react
+    div#react-demo 默认
+    div#react-demo2 默认
+    
+  script(src="js/index.js")
+  script.
+    console.log("ok");

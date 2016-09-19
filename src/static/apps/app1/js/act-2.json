@@ -1,0 +1,101 @@
+{
+    "oK": true,
+    "data": {
+        "list": [{
+            "pro_id": "1",
+            "pro_img": "/static/apps/v1.0/img/demo.gif",
+            "pro_name": "口炎清颗粒无糖型粒无糖型粒无糖型口炎清颗粒无糖型粒无糖",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+        }, {
+            "pro_id": "2",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }, {
+            "pro_id": "3",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }, {
+            "pro_id": "4",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }, {
+            "pro_id": "5",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }, {
+            "pro_id": "6",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }, {
+            "pro_id": "7",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }, {
+            "pro_id": "8",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }, {
+            "pro_id": "9",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }, {
+            "pro_id": "10",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }, {
+            "pro_id": "11",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }, {
+            "pro_id": "12",
+            "pro_img": "/static/apps/v1.0/img/demo_pro.gif",
+            "pro_name": "口炎清颗粒无糖型",
+            "pro_spec": "3克*10包 无糖",
+            "pro_brief": "滋阴清热，解毒消肿。用于阴虚火旺所致的口腔炎症",
+            "pro_price": "21.00"
+
+        }]
+    }
+}

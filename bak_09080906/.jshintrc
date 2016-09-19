@@ -1,0 +1,27 @@
+{
+    "maxerr": 50, //当单个文档错误、警告超过该数字时，jshint会停止继续输入日志
+    "maxdepth": 4, // 方法块中运行的嵌套层级
+    "maxparams": 3, // 函数中允许的形参个数
+    "bitwise": true, //如果是true，则禁止使用位运算符
+    "curly": true, //如果是true，则要求在if/while的模块时使用TAB结构
+    "debug": true, //如果是true，则允许使用debugger的语句
+    "eqeqeq": false, // 如果是true，则要求在所有的比较时使用===和!==
+    "forin": false, //如果是true，则不允许for in在没有hasOwnProperty时使用
+    "freeze": false, //如果是true,则不允许覆盖原型和本地属性，如Array/date等
+    "funcscope": true, //如果是true,内部控制结构定义的变量允许在控制体之外
+    "iterator": false, //如果是true,则不对"__iterator__"进行警告，"__iterator__"兼容有问题
+    "latedef": true, // 如果是true，则要求变量或函数，在使用之前必须要定义
+    "undef": true, // 如果是ture，则所有的局部变量必须先声明之后才能使用
+    "sub": true, // 如果是true，则允许使用各种写法获取属性(推荐使用person.name代替person[‘name’])
+    "shadow": "inner", // 在设置的条件外允许存在使用多次定义同个变量；
+    "asi": true, //如果是true,则允许缺少分号
+    "lastsemic": true, //如果是true,则允许单行控制块省略分号
+    "boss": true, //如果是true,则允许在if、for、while语句中使用赋值
+    "debug": true, //如果是true,则允许存在debugger语句
+    "eqnull": true, //如果是true,则允许存在'==null'
+    "evil": true, //如果是true，则允许使用eval方法
+    "expr": true, //如果是true,则允许应该出现赋值或函数调用的地方使用表达式
+    "loopfunc": true, //如果是true,则允许在循环体中定义函数,建议使用闭包传递i
+    "supernew": true, //如果是true, 允许new function() {…}和new Object
+    "validthis": true //如果是true,允许在非构造函数中使用this，推荐用Function.call
+}

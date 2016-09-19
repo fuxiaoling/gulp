@@ -1,0 +1,8 @@
+.div {
+  color: blue; }
+  .div .b {
+    color: black;
+    font-weight: bold;
+    text-decoration: none; }
+    .div .b .c {
+      color: white; }

@@ -1,0 +1,74 @@
+$lte7:true;
+@import 'mixin';
+$blue:#1875e7;
+$side:left;
+$var:30;
+
+.gallery{
+    @include center;
+    height:300px;
+}
+
+div {
+	color:$blue;
+}
+
+.rounded {
+	border-#{$side}-radius:5px;
+}
+
+body {
+	margin: (14px/2);
+	top: 50px + 100px;
+	right: $var * 10%;
+}
+
+.sidebar {
+  width: 300px;
+  @media screen and (orientation: landscape) {
+    width: 500px;
+  }
+}
+
+.list {
+  color: #00ff00;
+  width: 97%;
+  .list-item {
+    background-color: #ff0000;
+    color: #000000;
+  }
+}
+
+a {
+  font-weight: 700;
+  &:hover { text-decoration: underline; }
+  body.firefox & { font-weight: normal; }
+}
+
+.funky {
+  font: 2px/3px {
+    family: fantasy;
+    size: 30em;
+    weight: bold;
+  }
+}
+
+.inline-block{
+    @include inline-block;
+}
+
+.fl{
+    @include float;
+}
+
+.fr{
+    @include float(right);
+}
+
+.shadow{
+    @include box-shadow(0 0 5px rgba(0,0,0,.3),inset 0 0 3px rgba(255,255,255,.5));
+}
+
+.icon-triangle{
+  @include triangle;
+}

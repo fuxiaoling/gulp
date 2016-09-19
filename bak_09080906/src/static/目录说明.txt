@@ -1,0 +1,14 @@
+apps目录 --> 
+           项目业务资源，含css、font、img、js。（一级目录以版本名命名，二级目录为资源类型）；
+
+assets目录 --> 
+           项目自有资产资源，含css、font、js。存放自主开发的公共函数、基础类、模块等等组件；
+
+libs目录 --> 
+           项目第三方引用资源，含css、font、js；
+           JS存放约定，如：“msui/0.6.2/sm.js”,"msui/0.6.2/sm-extend.js"；
+           JS存放必须存在min版本，如： "msui/0.6.2/sm.min.js","msui/0.6.2/sm-extend.min.js"；
+
+根目录文件 -->
+           config.js为当前项目使用的模块配置文件
+           init.js为入口文件，非模块内的app入口文件

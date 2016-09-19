@@ -1,0 +1,89 @@
+{
+    "oK": true,
+    "data": {
+        "list": [{
+            "brandAct_id": "1",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+        }, {
+            "brandAct_id": "2",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }, {
+            "brandAct_id": "3",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }, {
+            "brandAct_id": "4",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }, {
+            "brandAct_id": "5",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }, {
+            "brandAct_id": "6",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }, {
+            "brandAct_id": "7",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }, {
+            "brandAct_id": "8",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }, {
+            "brandAct_id": "9",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }, {
+            "brandAct_id": "10",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }, {
+            "brandAct_id": "11",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }, {
+            "brandAct_id": "12",
+            "brandAct_img": "/static/apps/v1.0/img/品牌活动广告图.png",
+            "brandAct_title": "6.18开店庆活动",
+            "brandAct_brief": "满100元立减50元",
+            "brandAct_time": "截止06月20号"
+
+        }]
+    }
+}

@@ -1,0 +1,50 @@
+doctype html
+html(lang='zh-cmn-Hans')
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
+    meta(name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0")
+
+    meta(name="apple-mobile-web-app-capable",content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style",content="black")
+    title 商品列表页
+    meta(name="keywords", content="商品列表页")
+    meta(name="description", content="商品列表页")
+    link(rel='stylesheet', href='/static/libs/css/msui/0.6.2/sm.min.css')
+    link(rel='stylesheet', href='/static/apps/v1.0/css/global.css')
+    link(rel='stylesheet', href='/static/apps/v1.0/css/red-envelope.css')
+  body
+    div.page
+      header.bar.bar-nav
+        a.button.button-link.button-nav.pull-right(href="/demos/bar")
+          关于药立达
+        h1.title 注册送红包
+      //页面内容 | 开始
+      div.content
+        div.container
+          div.phone-input
+            span.icon.icon-phone
+            label.placeholder 输入手机号码领取红包
+            input.input(type="tel",name="phone",maxlength="11",autocomplete="off",value="",onpaste="return false;",style="ime-mode:disabled")
+          a.submit-button 立即领取
+      div.success
+        div.mask-layer
+        div.success-box
+          a.box-close(href="javascript:void(0);") &nbsp;
+          div.box-content
+            span
+              现金红包
+              i.color 已发送
+            马上下载药立达使用红包
+          a.wake.success-action(href="javascript:void(0);") 立即下载
+      div.invite
+        div.mask-layer
+        div.invite-box
+          a.box-close(href="javascript:void(0);") &nbsp;
+          div.box-content
+            span 对不起 你已领取
+            你可使用药立达邀请好友获得红包
+          a.wake.invite-action(href="javascript:void(0);") 立即邀请别人
+        //页面内容 | 结束
+
+  script(id="ENTRY",data-page='red-envelope',src='/static/init.js')

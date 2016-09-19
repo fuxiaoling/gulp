@@ -1,0 +1,131 @@
+{
+    "data": {
+        "list": [
+            {
+                "goodsCode": "CD1000044763",
+                "goodsId": "11150906140414027000",
+                "goodsImg": "/static/apps/v1.0/img/demo.gif",
+                "goodsIntro": "",
+                "goodsName": "博士伦 原装进口半年抛2片装隐形眼镜",
+                "goodsTitle": "999",
+                "marketPrice": "99999.99",
+                "packingSpec": "2片装",
+                "sellPrice": "99999.99",
+                "totalStock": 10
+            },
+            {
+                "goodsCode": "CMHY00000004",
+                "goodsId": "11150320094416436890",
+                "goodsImg": "/static/apps/v1.0/img/demo_pro.gif",
+                "goodsIntro": "111",
+                "goodsName": "便乃通茶",
+                "goodsTitle": "绝种长生药2",
+                "marketPrice": "661.00",
+                "packingSpec": "2.5mg*1000s",
+                "sellPrice": "661.00",
+                "totalStock": 10
+            },
+            {
+                "goodsCode": "IMHY00031801",
+                "goodsId": "11150517220214819002",
+                "goodsImg": "/static/apps/v1.0/img/demo_pro.gif",
+                "goodsIntro": "",
+                "goodsName": "氟哌噻吨美利曲辛片",
+                "goodsTitle": "111",
+                "marketPrice": "600.00",
+                "packingSpec": "20片",
+                "sellPrice": "500.00",
+                "totalStock": 10
+            },
+            {
+                "goodsCode": "CMHY00000004",
+                "goodsId": "11150320093657695006",
+                "goodsImg": "/static/apps/v1.0/img/demo_pro.gif",
+                "goodsIntro": "111",
+                "goodsName": "地西泮片地西泮片地西泮片地西泮片地西泮片地西泮片地西泮片地西泮片地西泮片地西泮片地西泮片地西泮片地西",
+                "goodsTitle": "绝种长生药城村基本面塔顶模压李斐莉雪模压imaydsasadfasdf",
+                "marketPrice": "66.00",
+                "packingSpec": "2.5mg*1000s",
+                "sellPrice": "70.00",
+                "totalStock": 101
+            },
+            {
+                "goodsCode": "CMHY00000002",
+                "goodsId": "11150415151547147004",
+                "goodsImg": "/static/apps/v1.0/img/demo_pro.gif",
+                "goodsIntro": "",
+                "goodsName": "地西泮注射液",
+                "goodsTitle": "22222222222",
+                "marketPrice": "22.00",
+                "packingSpec": "2ml:10mg*10支",
+                "sellPrice": "22.00",
+                "totalStock": 10
+            },
+            {
+                "goodsCode": "CD00050765",
+                "goodsId": "11150528104648954028",
+                "goodsImg": "/static/apps/v1.0/img/demo_pro.gif",
+                "goodsIntro": "",
+                "goodsName": "艾灸盒",
+                "goodsTitle": "55555",
+                "marketPrice": "21.00",
+                "packingSpec": "双孔",
+                "sellPrice": "21.00",
+                "totalStock": 10
+            },
+            {
+                "goodsCode": "HH1000042237",
+                "goodsId": "11150528101532835022",
+                "goodsImg": "/static/apps/v1.0/img/demo_pro.gif",
+                "goodsIntro": "换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行换行",
+                "goodsName": "阿娇",
+                "goodsTitle": "9999",
+                "marketPrice": "21.00",
+                "packingSpec": "",
+                "sellPrice": "21.00",
+                "totalStock": 10
+            },
+            {
+                "goodsCode": "CM1000031933",
+                "goodsId": "11150607104412671000",
+                "goodsImg": "/static/apps/v1.0/img/demo_pro.gif",
+                "goodsIntro": "",
+                "goodsName": "荆防颗粒",
+                "goodsTitle": "荆防颗粒15g装",
+                "marketPrice": "20.00",
+                "packingSpec": "15g",
+                "sellPrice": "20.00",
+                "totalStock": 10
+            },
+            {
+                "goodsCode": "CMHY00000010",
+                "goodsId": "11150320093928748008",
+                "goodsImg": "/static/apps/v1.0/img/demo_pro.gif",
+                "goodsIntro": "阿普唑仑片 大甩卖阿普唑仑片 大甩卖",
+                "goodsName": "阿普唑仑片",
+                "goodsTitle": "阿普唑仑片 大甩卖",
+                "marketPrice": "12.00",
+                "packingSpec": "200s",
+                "sellPrice": "10.00",
+                "totalStock": 96
+            },
+            {
+                "goodsCode": "CMHY00000001",
+                "goodsId": "11150415151235213002",
+                "goodsImg": "/static/apps/v1.0/img/demo_pro.gif",
+                "goodsIntro": "",
+                "goodsName": "氯硝西泮注射液",
+                "goodsTitle": "氯硝西泮大甩卖2",
+                "marketPrice": "11.00",
+                "packingSpec": "1ml:1mg*10支",
+                "sellPrice": "9.00",
+                "totalStock": 978
+            }
+        ],
+        "pageIndex": 1,
+        "pageSize": 10,
+        "total": 18,
+        "totalPage": 2
+    },
+    "oK": true
+}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>商品列表页</title>
+    <meta name="keywords" content="商品列表页">
+    <meta name="description" content="商品列表页">
+    <link rel="stylesheet" href="/static/libs/css/msui/0.6.2/sm.min.css">
+    <link rel="stylesheet" href="/static/apps/v1.0/css/global.css">
+    <link rel="stylesheet" href="/static/apps/v1.0/css/red-envelope.css">
+  </head>
+  <body>
+    <div class="page">
+      <header class="bar bar-nav"><a href="/demos/bar" class="button button-link button-nav pull-right">关于药立达</a>
+        <h1 class="title">注册送红包</h1>
+      </header>
+      <!--页面内容 | 开始-->
+      <div class="content">
+        <div class="container">
+          <div class="phone-input"><span class="icon icon-phone"></span>
+            <label class="placeholder">输入手机号码领取红包</label>
+            <input type="tel" name="phone" maxlength="11" autocomplete="off" value="" onpaste="return false;" style="ime-mode:disabled" class="input">
+          </div><a class="submit-button">立即领取</a>
+        </div>
+      </div>
+      <div class="success">
+        <div class="mask-layer"></div>
+        <div class="success-box"><a href="javascript:void(0);" class="box-close">&nbsp;</a>
+          <div class="box-content"><span>现金红包<i class="color">已发送</i></span>马上下载药立达使用红包</div><a href="javascript:void(0);" class="wake success-action">立即下载</a>
+        </div>
+      </div>
+      <div class="invite">
+        <div class="mask-layer"></div>
+        <div class="invite-box"><a href="javascript:void(0);" class="box-close">&nbsp;</a>
+          <div class="box-content"><span>对不起 你已领取</span>你可使用药立达邀请好友获得红包</div><a href="javascript:void(0);" class="wake invite-action">立即邀请别人</a>
+        </div>
+        <!--页面内容 | 结束-->
+      </div>
+    </div>
+  </body>
+  <script id="ENTRY" data-page="red-envelope" src="/static/init.js"></script>
+</html>

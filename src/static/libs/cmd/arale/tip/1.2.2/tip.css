@@ -1,0 +1,5 @@
+@import url('/static/libs/alice/poptip/1.2.0/poptip.css');
+.poptip {
+    top: 0;
+    left: 0;
+}

@@ -1,0 +1,38 @@
+doctype html
+html(lang='zh-cmn-Hans')
+  head
+    meta(charset="UTF-8")
+    meta(http-equiv="X-UA-Compatible",content="IE=edge,chrome=1")
+    meta(name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0")
+    meta(name="apple-mobile-web-app-capable",content="yes")
+    meta(name="apple-mobile-web-app-status-bar-style",content="black")
+    title 编译演示：资源路径自动替换
+    meta(name="keywords", content="编译演示：资源路径自动替换")
+    meta(name="description", content="编译演示：资源路径自动替换")
+    link(rel='stylesheet', href='http://fuxiaoling.github.io/o2o/static/common/css/msui/0.6.2/sm.min.css')
+    link(rel='stylesheet', href='//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css')
+    link(rel='stylesheet', href='/static/libs/css/msui/0.6.2/sm.min.css')
+    link(rel='stylesheet', href='../../../static/assets/css/global.css')
+    link(rel='stylesheet', href='./css/index.css')
+    link(rel='stylesheet', href='css/index.css')
+    link(rel='stylesheet', href='http://localhost:6000/apps/css/product-list.css')
+    link(rel='stylesheet', href='http://localhost/apps/css/product-list2.css')
+  body
+    div.page
+      div(style="width:100%;height:60px;text-align:center;line-height:60px;color:#fff;margin-bottom:10px;background-color:#f90;") 颜色演示
+      div.background-image(style="width:100%;height:60px;margin-bottom:10px;background-image: url('/static/apps/o2o/img/demo_ad.png');") style图片背景
+      div
+        a.click(href="javascript:void(0);",title="图片链接")
+          img(src="/static/apps/o2o/img/demo_ad.png")
+      div(style="width:100%;height:60px;margin-top:10px;")
+        img(data-original="/static/apps/o2o/img/demo_ad.png",src="http://www.dzwy168.com/upload/main/rec_position/f0a5ee0bfc20dd005850.png")
+
+  script(id="ENTRY",data-page='red-envelope',src='/static/init.js')
+  script(src='http://fuxiaoling.github.io/o2o/static/common/js/zepto/1.1.6/zepto.min.js')
+  script(src='//g.alicdn.com/sj/lib/zepto/zepto.min.js')
+  script(src='/static/libs/js/msui/0.6.2/sm.min.js')
+  script(src='../../../static/apps/o2o/v1.0/js/global.js')
+  script(src='./js/index.js')
+  script(src='js/index.js')
+  script(src='http://localhost:6000/apps/js/product-list.js')
+  script(src='http://localhost/apps/js/product-list2.js')
