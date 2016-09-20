@@ -29,7 +29,7 @@ var gulp = require('gulp'),
     rev = require('gulp-rev'), //更改版本名
     jsdoc = require('gulp-jsdoc3'), //自动文档
 
-	/* 压缩 */
+    /* 压缩 */
     htmlmin = require("gulp-html-minifier"), //html压缩
     uglify = require('gulp-uglify'), //js压缩
     minifycss = require('gulp-clean-css'), //CSS压缩
@@ -56,7 +56,7 @@ var gulp = require('gulp'),
 
     /* 测试、检测 */
     jshint = require('gulp-jshint'), //JS语法检测
-    stylish = require('jshint-stylish'),  //工厂
+    stylish = require('jshint-stylish'), //工厂
     mocha = require('gulp-mocha'), // 测试
 
     /* require业务脚本 */
@@ -73,38 +73,38 @@ var conf = config.conf(),
     distHtmlPrev = config.distHtmlPrev(),
     distStaticPrev = config.distStaticPrev();
 
- /*文档API*/
+/*文档API*/
 var docName = jsdocConfig.templates.systemName, //doc文档标题
- 	docInclude = jsdocConfig.source.include, //doc文档需要引入的文件，多文件构成文档
- 	docExclude = jsdocConfig.source.exclude; //doc文档需要排除的文件
- 	docOutDir = jsdocConfig.opts.destination; //doc文档输出位置
+    docInclude = jsdocConfig.source.include, //doc文档需要引入的文件，多文件构成文档
+    docExclude = jsdocConfig.source.exclude; //doc文档需要排除的文件
+docOutDir = jsdocConfig.opts.destination; //doc文档输出位置
 
 /*JS检查 工厂*/
 var useJshint = lazypipe()
     .pipe(jshint)
-    .pipe(jshint.reporter,stylish);
+    .pipe(jshint.reporter, stylish);
 
 /*help命令*/
 gulp.task('help', function() {
     console.log('---参考命令 | 开始---------------------------------------------');
     console.log('');
-    console.log(' gulp server -p			开启生产server（无参为默认本server）');
+    console.log(' gulp server -p            开启生产server（无参为默认本server）');
     console.log('');
-    console.log(' gulp server -d			开启开发server');
+    console.log(' gulp server -d            开启开发server');
     console.log('');
-    console.log(' gulp compile			编译所有src.compile中文件至同目录下');
+    console.log(' gulp compile          编译所有src.compile中文件至同目录下');
     console.log('');
-    console.log(' gulp build			生产-全部模块打包');
+    console.log(' gulp build            生产-全部模块打包');
     console.log('');
-    console.log(' gulp build -m moduleName	生产-部分模块打包（默认全部打包）');
+    console.log(' gulp build -m moduleName  生产-部分模块打包（默认全部打包）');
     console.log('');
-    console.log(' gulp clean			删除生产文件');
+    console.log(' gulp clean            删除生产文件');
     console.log('');
     console.log('---参考命令 | 结束---------------------------------------------');
 });
 
 /*自动监听检查JS*/
-gulp.task('autoJshint',function(){
+gulp.task('autoJshint', function() {
     return watch.autoJshint();
 });
 
@@ -125,16 +125,16 @@ gulp.task('test', function() {
     return manual.test(mod);
 });
 
-/*启动服务*/
-gulp.task('server', ['autoCompile','autoJshint'], function() {
+/*启动服务 (2016-6-20 9:31测试通过)*/
+gulp.task('server', ['autoCompile', 'autoJshint'], function() {
     var evr = argv.d || !argv.p,
         dir = dist.dir,
         port = dist.port,
         domain = dist.domain;
     if (evr) {
         dir = src.dir,
-            port = src.port,
-            domain = src.domain;
+        port = src.port,
+        domain = src.domain;
     }
     browserSync({
         files: dir + "/**",
@@ -160,67 +160,67 @@ gulp.task('clean', function() {
 });
 
 /* build命令：项目文件构建处理 */
-gulp.task('build',function() {
+gulp.task('build', function() {
     var mod = argv.m || 'all',
         parts = [];
     parts = manual.getParts(mod);
-    for (var key in parts) {//转为线性执行
-    	(function(key){
-			console.log('');
-			console.log('┌-------------------构建“'+parts[key]+'”模块 | 开始------------------------┐');
-			console.log('');
-			var modItem = parts[key];
-		    gulp.task('delDir', function() {
-		        console.log(' 删除 “' + './' + distHtmlPrev + '/' + modItem, '和 ./' + distStaticPrev + '/'+conf.appDir+'/' + modItem + '” 结束');
-		        return gulp.src(['./' + distHtmlPrev + '/' + modItem, './' + distStaticPrev + '/'+conf.appDir+'/' + modItem],{read:false}).pipe(clean());
-		    });
-		    /* 非mini */
-		    gulp.task(modItem + '_html', function() {
-		        return build.html(modItem);
-		    });
-		    gulp.task(modItem + '_res', function() {
-		        return build.res(modItem);
-		    });
-		    /* mini */
-		    gulp.task(modItem + '_mini_html', function() {
-		        return mini.html(modItem);
-		    });
-		    gulp.task(modItem + '_mini_css', function() {
-		        return mini.css(modItem);
-		    })
-		    gulp.task(modItem + '_mini_js', function() {
-		        return mini.js(modItem);
-		    })
-		    gulp.task(modItem +'_module',function(cb) {
-			    if (conf.mini) {
-			        runSequence(
-			            'delDir', modItem + '_mini_html', modItem + '_res', modItem + '_mini_css', modItem + '_mini_js',cb
-			        );
-			    } else {
-			        runSequence(
-			            'delDir', modItem + '_html', modItem + '_res', cb
-			        );
-			    }
-		    })
-			gulp.start(modItem+'_module');
-		    console.log(' 重新构建 “' + parts[key] + '” 结束');
-		    console.log('');
-		    console.log('└--------------------------------------------------------------------┘');
-		    console.log('');
-    	})(key);
+    for (var key in parts) { //转为线性执行
+        (function(key) {
+            console.log('');
+            console.log('┌-------------------构建“' + parts[key] + '”模块 | 开始------------------------┐');
+            console.log('');
+            var modItem = parts[key];
+            gulp.task('delDir', function() {
+                console.log(' 删除 “' + './' + distHtmlPrev + '/' + modItem, '和 ./' + distStaticPrev + '/' + conf.appDir + '/' + modItem + '” 结束');
+                return gulp.src(['./' + distHtmlPrev + '/' + modItem, './' + distStaticPrev + '/' + conf.appDir + '/' + modItem], { read: false }).pipe(clean());
+            });
+            /* 非mini */
+            gulp.task(modItem + '_html', function() {
+                return build.html(modItem);
+            });
+            gulp.task(modItem + '_res', function() {
+                return build.res(modItem);
+            });
+            /* mini */
+            gulp.task(modItem + '_mini_html', function() {
+                return mini.html(modItem);
+            });
+            gulp.task(modItem + '_mini_css', function() {
+                return mini.css(modItem);
+            })
+            gulp.task(modItem + '_mini_js', function() {
+                return mini.js(modItem);
+            })
+            gulp.task(modItem + '_module', function(cb) {
+                if (conf.mini) {
+                    runSequence(
+                        'delDir', modItem + '_mini_html', modItem + '_res', modItem + '_mini_css', modItem + '_mini_js', cb
+                    );
+                } else {
+                    runSequence(
+                        'delDir', modItem + '_html', modItem + '_res', cb
+                    );
+                }
+            })
+            gulp.start(modItem + '_module');
+            console.log(' 重新构建 “' + parts[key] + '” 结束');
+            console.log('');
+            console.log('└--------------------------------------------------------------------┘');
+            console.log('');
+        })(key);
     }
 });
 
 /* static命令：构建src/static至dist/static中 (2016-6-23 8:23测试通过)*/
-gulp.task('static',function(){
-    var _src = srcStaticPrev +'/**/*.*',
+gulp.task('static', function() {
+    var _src = srcStaticPrev + '/**/*.*',
         _dist = distStaticPrev + '/';
     gulp.task('delStatic', function() { //先对dist/static清除
-        return gulp.src(_dist,{read:false}).pipe(clean());
+        return gulp.src(_dist, { read: false }).pipe(clean());
     });
     gulp.task('static_res', function() { //复制生成，这里会连带生成apps下的业务脚本，但在整体打包时会删除重新生成。
         gulp.src(_src)
-            .pipe(gulpif('*.js' && dist.jshint,useJshint())) //根据dist.jshint配置开启关闭JS检查
+            .pipe(gulpif('*.js' && dist.jshint, useJshint())) //根据dist.jshint配置开启关闭JS检查
             .pipe(gulpif('*.{jpg,jpeg,png,gif}', imagemin())) //如果是图片，则进行压缩 
             .pipe(gulp.dest(_dist));
     });
@@ -248,7 +248,7 @@ var build = {
                         rel = $el.attr('rel');
                     if (href) {
                         if (/icon/ig.test(rel) || rel === 'stylesheet') {
-                            $el.attr('href',getFile.changePath(href, pageRoot));
+                            $el.attr('href', getFile.changePath(href, pageRoot));
                         }
                     }
                 });
@@ -257,7 +257,7 @@ var build = {
                     var $el = $(this),
                         href = $el.attr('src');
                     if (href) {
-                        $el.attr('src',getFile.changePath(href, pageRoot));
+                        $el.attr('src', getFile.changePath(href, pageRoot));
                     }
                 });
                 //修改img路径(支持data-original图片懒加载) 忽略JS代码中引入img文件的情况
@@ -265,22 +265,22 @@ var build = {
                     var $el = $(this),
                         href = $el.attr('src');
                     if (href) {
-                        $el.attr('src',getFile.changePath(href, pageRoot));
+                        $el.attr('src', getFile.changePath(href, pageRoot));
                     }
                     var dataImg = $el.data('original');
-                    if(dataImg !== undefined){
-                        $el.attr(conf.lazyload,getFile.changePath(dataImg, pageRoot))
+                    if (dataImg !== undefined) {
+                        $el.attr(conf.lazyload, getFile.changePath(dataImg, pageRoot))
                     }
                 });
                 //修改在html中以style方式写入的背景图片，节点需要加入“background-image”class名
                 $('.background-image').each(function(index, el) {
                     var $el = $(this);
                     var imgHref = $el.css('background-image');
-                    imgHref = imgHref.replace("url(",'');
-                    imgHref = imgHref.replace(")",'');
-                    imgHref = imgHref.replace(/'/g,'');
+                    imgHref = imgHref.replace("url(", '');
+                    imgHref = imgHref.replace(")", '');
+                    imgHref = imgHref.replace(/'/g, '');
                     imgHref = getFile.changePath(imgHref, pageRoot);
-                    $el.css('background-image',"url("+ imgHref +")");
+                    $el.css('background-image', "url(" + imgHref + ")");
                 });
 
             }),
@@ -293,23 +293,23 @@ var build = {
     res: function() {
         var res = src.res,
             mod = arguments[0],
-            staticR = srcStaticPrev + '/'+conf.appDir+'/' + mod, //static下的资源
+            staticR = srcStaticPrev + '/' + conf.appDir + '/' + mod, //static下的资源
             r = srcHtmlPrev + '/' + mod, //业务模块下的资源
-            rArr = [staticR,r];
+            rArr = [staticR, r];
         for (var key in rArr) {
-            (function(key){
+            (function(key) {
                 var thisR = rArr[key];
                 for (var k in res) {
-                    (function(k){
+                    (function(k) {
                         var item = res[k].split('/'),
                             _src = thisR + '/**/' + item[1];
-                        if(item[1].indexOf('js') !== -1 || item[1].indexOf('css') !== -1){
+                        if (item[1].indexOf('js') !== -1 || item[1].indexOf('css') !== -1) {
                             _src = thisR + '/**/*.' + item[0];
                         }
                         gulp.src(_src)
-                            .pipe(gulpif('*.js' && dist.jshint,useJshint()))
+                            .pipe(gulpif('*.js' && dist.jshint, useJshint()))
                             .pipe(gulpif('*.{jpg,jpeg,png,gif}', imagemin()))
-                            .pipe(gulp.dest(distStaticPrev + '/'+conf.appDir+'/' + mod + '/'));
+                            .pipe(gulp.dest(distStaticPrev + '/' + conf.appDir + '/' + mod + '/'));
                     })(k)
                 }
             })(key)
@@ -360,24 +360,24 @@ var build = {
     }
 }
 var combo = {
-    amd:function(){
+        amd: function() {
 
-    },
-    cmd:function(){
+        },
+        cmd: function() {
 
-    },
-    webpack:function(){
+        },
+        webpack: function() {
 
+        }
     }
-}
-/*构建mini版本*/
+    /*构建mini版本*/
 var mini = {
     noDistStaticDomain: function() {
         var dsd = dist.staticDomain;
         return dsd === '' || dsd === undefined || dsd === null ? true : false;
     },
     html: function() {
-        var userTime = function(){
+        var userTime = function() {
             var myDate = new Date(),
                 year = myDate.getFullYear(),
                 month = myDate.getMonth() + 1,
@@ -401,6 +401,7 @@ var mini = {
 
                 /*动作二：检查资源引入句子*/
                 var k = true;
+
                 function eachMsg() { //如果引用的为绝对路径
                     var src = arguments[0];
                     if (src[0] === '/' && src[1] != '/') {
@@ -451,7 +452,7 @@ var mini = {
                                         }
                                     })
                                 }
-                                var _dist2 = distStaticPrev + '/'+conf.appDir+'/'+ path + '/' + cssDir + '/min/';
+                                var _dist2 = distStaticPrev + '/' + conf.appDir + '/' + path + '/' + cssDir + '/min/';
                                 domSrc({ // 本组件会自动忽略以绝对方式引入的资源文件，所以会排除以域方式或cdn方式的或"/"开头或"//"开头
                                         file: pageRoot,
                                         selector: 'link',
@@ -459,7 +460,7 @@ var mini = {
                                     })
                                     .pipe(concat(pageName + '.css'))
                                     .pipe(spriter({
-                                        spriteSheet: distStaticPrev +'/'+conf.appDir+'/'+ path + '/' + imgDir + '/min/sprite_' + userTime() + '.png',
+                                        spriteSheet: distStaticPrev + '/' + conf.appDir + '/' + path + '/' + imgDir + '/min/sprite_' + userTime() + '.png',
                                         pathToSpriteSheetFromCSS: '../' + imgArr[0] + '/min/sprite_' + userTime() + '.png',
                                         spritesmithOptions: {
                                             padding: 5
@@ -483,7 +484,7 @@ var mini = {
                             if (item.indexOf('js') > -1) {
                                 var jsArr = item.split('/');
                                 var jsDir = jsArr[0];
-                                var _dist2 = distStaticPrev +'/'+conf.appDir+'/'+ path + '/' + jsDir + '/min/';
+                                var _dist2 = distStaticPrev + '/' + conf.appDir + '/' + path + '/' + jsDir + '/min/';
                                 domSrc({ // 本组件会自动忽略以绝对方式引入的资源文件，所以会排除以域方式或cdn方式的
                                         file: pageRoot,
                                         selector: 'script',
@@ -521,8 +522,8 @@ var mini = {
                         }
                     });
                     //动作四 加入构建后的CSS和JS引入句子
-                    $('head').append('<link rel="stylesheet" href="' + staticDomain +'/'+conf.appDir+'/'+ path + '/' + cssArr[0] + '/min/' + pageName + '.css?v='+userTime()+'">');
-                    $('body').append('<script src="' + staticDomain +'/'+conf.appDir+'/'+ path + '/' + jsArr[0] + '/min/' + pageName + +'.js?v='+userTime()+'"></script>');
+                    $('head').append('<link rel="stylesheet" href="' + staticDomain + '/' + conf.appDir + '/' + path + '/' + cssArr[0] + '/min/' + pageName + '.css?v=' + userTime() + '">');
+                    $('body').append('<script src="' + staticDomain + '/' + conf.appDir + '/' + path + '/' + jsArr[0] + '/min/' + pageName + +'.js?v=' + userTime() + '"></script>');
                 }
             }),
             htmlmin({
@@ -552,48 +553,48 @@ var mini = {
             }
             return entries;
         };
-    	var isJs = function(){
-    		var paths = arguments[0],
-    			suffix = getFile.suffix(paths);
-			if(suffix === 'js'){
-				return true;
-			}else{
-				return false;
-			}
-    	};
-        var byAMD = function(){
+        var isJs = function() {
+            var paths = arguments[0],
+                suffix = getFile.suffix(paths);
+            if (suffix === 'js') {
+                return true;
+            } else {
+                return false;
+            }
+        };
+        var byAMD = function() {
             var paths = arguments[0];
-            var c = function(){
-                if(conf.moduleCombo === 'amd'){
+            var c = function() {
+                if (conf.moduleCombo === 'amd') {
                     return true;
                 }
             }
             return isJs(paths) && c;
         };
-    	var byCMD = function(){
-    		var paths = arguments[0];
-    		var c = function(){
-    			if(conf.moduleCombo === 'cmd'){
-    				return true;
-    			}
-    		}
-    		return isJs(paths) && c;
-    	};
-    	var byWebpack = function(){
-    		var paths = arguments[0];
-    		var c = function(){
-    			if(conf.moduleCombo === 'webpack'){
-    				return true;
-    			}
-    		}
-    		return isJs(paths) && c;
-    	};
+        var byCMD = function() {
+            var paths = arguments[0];
+            var c = function() {
+                if (conf.moduleCombo === 'cmd') {
+                    return true;
+                }
+            }
+            return isJs(paths) && c;
+        };
+        var byWebpack = function() {
+            var paths = arguments[0];
+            var c = function() {
+                if (conf.moduleCombo === 'webpack') {
+                    return true;
+                }
+            }
+            return isJs(paths) && c;
+        };
         var key = arguments[0],
-            _dist = distStaticPrev + '/'+conf.appDir+'/'+ key + '/',
+            _dist = distStaticPrev + '/' + conf.appDir + '/' + key + '/',
             _src = srcHtmlPrev + '/' + key + '/**/*.js';
         var combined = combiner.obj([
             gulp.src(_src),
-            gulpif(dist.jshint,useJshint()),
+            gulpif(dist.jshint, useJshint()),
             uglify(),
             //bySeajs
             rename(function(path) {
@@ -607,7 +608,7 @@ var mini = {
     //构建mini-css
     css: function() {
         var key = arguments[0],
-            _dist = distStaticPrev + '/'+conf.appDir+'/'+ key + '/',
+            _dist = distStaticPrev + '/' + conf.appDir + '/' + key + '/',
             _src = srcHtmlPrev + '/' + key + '/**/*.css';
         var res = src.res,
             imgDir = 'img',
@@ -626,7 +627,7 @@ var mini = {
             vinylPaths(function(paths) {
                 gulp.src(paths)
                     .pipe(spriter({
-                        spriteSheet: distStaticPrev + '/'+conf.appDir+'/'+ key + '/' + getFile.modDir(paths) + '/' + imgDir + '/min/sprite_' + timestamp + '.png',
+                        spriteSheet: distStaticPrev + '/' + conf.appDir + '/' + key + '/' + getFile.modDir(paths) + '/' + imgDir + '/min/sprite_' + timestamp + '.png',
                         pathToSpriteSheetFromCSS: '../' + imgDir + '/min/sprite_' + timestamp + '.png',
                         spritesmithOptions: {
                             padding: 5
@@ -647,22 +648,27 @@ var mini = {
 
 /* 监听 */
 var watch = {
-    //自动监听检测JS代码、文档生成 (2016-6-21 10:13测试通过)
-	autoJshint:function(){
-		 gulp.watch(src.dir + '/**/*.js',function(event) {
-		 	var _src = event.path
-                docsDir = conf.docsDir;
-		 		if(src.jsdoc){
-			 		delete [docName,docInclude,docExclude,docOutDir];
-			 		jsdocConfig.templates.systemName = getFile.newSrc(_src)+"-说明文档";
-	            	jsdocConfig.opts.destination = "./"+docsDir+"/"+getFile.modDir(_src)+"/"+getFile.name(_src);
-	            	del(['./'+docsDir+'/' +getFile.modDir(_src)+'/'+getFile.name(_src)]);
-            	}
-            gulp.src(_src)
-                .pipe(gulpif(src.jshint,useJshint()))
-                .pipe(gulpif(src.jsdoc,jsdoc(jsdocConfig)));
-		 });
-	},
+    //自动监听检测JS代码、文档生成 (2016-9-19 14:40测试通过)
+    autoJshint: function() {
+        gulp.watch(src.dir + '/**/*.js', function(event) {
+            if (event.type === 'changed') {
+                var _src = event.path;
+                var docsDir = conf.docsDir;
+                if (src.jsdoc) {
+                    delete[docName, docInclude, docExclude, docOutDir];
+                    jsdocConfig.templates.systemName = getFile.newSrc(_src) + "-说明文档";
+                    jsdocConfig.opts.destination = "./" + docsDir + "/" + getFile.modDir(_src) + "/" + getFile.name(_src);
+                    del(['./' + docsDir + '/' + getFile.modDir(_src) + '/' + getFile.name(_src)]);
+                };
+                gulp.src(_src)
+                    .pipe(gulpif(src.jshint, useJshint()))
+                    .pipe(gulpif(src.jsdoc, jsdoc(jsdocConfig)));
+            } else {
+                return false;
+            }
+
+        });
+    },
     //自动监听编译模板 (2016-9-9 16:05测试通过)
     autoCompile: function() {
         var x = src.compile;
@@ -701,17 +707,17 @@ var watch = {
 
 /* 部分手动命令 */
 var manual = {
-	getParts: function(){
+    getParts: function() {
         var mod = arguments[0],
             modx = mod,
             modules = src.modules;
         if (mod.indexOf('/') > -1) {
             var arr = mod.split('/');
             modx = arr[0];
-        	if (modules.indexOf(modx) === -1) modx = 'all';
+            if (modules.indexOf(modx) === -1) modx = 'all';
         }
         return modx === 'all' ? modules : [mod];
-	},
+    },
     //手动命令编译模板(2016-6-21 11:26测试通过)
     compile: function() {
         var mod = arguments[0],
@@ -738,9 +744,9 @@ var manual = {
                         gulp.src(srcHtmlPrev + '/' + parts[key] + '/**/*.' + suffix)
                             .pipe(gulpif('*.' + suffix, eval(tool)))
                             .pipe(gulp.dest(srcHtmlPrev + '/' + parts[key] + '/'));
-                        gulp.src(srcStaticPrev + '/'+conf.appDir+'/' + parts[key] + '/**/*.' + suffix)
+                        gulp.src(srcStaticPrev + '/' + conf.appDir + '/' + parts[key] + '/**/*.' + suffix)
                             .pipe(gulpif('*.' + suffix, eval(tool)))
-                            .pipe(gulp.dest(srcStaticPrev + '/'+conf.appDir+'/' + parts[key] + '/'));
+                            .pipe(gulp.dest(srcStaticPrev + '/' + conf.appDir + '/' + parts[key] + '/'));
                     })(k);
                 }
             })(key);
@@ -748,19 +754,17 @@ var manual = {
     },
 
     //模块形式测试
-    test:function(){
+    test: function() {
         var mod = arguments[0],
             x = src.compile,
             parts = [];
         parts = this.getParts(mod);
         for (var key in parts) {
             (function(key) {
-                gulp.src('test/' + parts[key] + '/**/*.js', {read: false})
-                	.pipe(mocha({reporter: 'nyan'}))
-                	.on('error', gutil.log);
-        	})(key);
+                gulp.src('test/' + parts[key] + '/**/*.js', { read: false })
+                    .pipe(mocha({ reporter: 'nyan' }))
+                    .on('error', gutil.log);
+            })(key);
         }
     }
 }
-
-

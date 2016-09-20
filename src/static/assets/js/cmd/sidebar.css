@@ -1,0 +1,110 @@
+@charset "utf-8";
+@font-face {font-family: "sideBar";
+  src: url('/assets/font/sideBar/iconfont.eot'); /* IE9*/
+  src: url('/assets/font/sideBar/iconfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('/assets/font/sideBar/iconfont.woff') format('woff'), /* chrome、firefox */
+  url('/assets/font/sideBar/iconfont.ttf') format('truetype'), /* chrome、firefox、opera、Safari, Android, iOS 4.2+*/
+  url('/assets/font/sideBar/iconfont.svg#sideBar') format('svg'); /* iOS 4.1- */
+}
+.sideBarIcon{
+    font-family:"sideBar" !important;
+	font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.mall-bar{ display:block; width:35px;height:100%;background:#565656;color: #fff;z-index: 999;text-align: center;font-family:"Microsoft Yahei","\5fae\8f6f\96c5\9ed1","\5b8b\4f53";}
+.mall-bar .bar-line{ width:80%; height:1px; margin:10px auto; background-color:#999;}
+.mall-bar #bar-search,.mall-bar #bar-services,.mall-bar #bar-login{ width:100%; height:40px;}
+.mall-bar a.pr{ display:block; width:100%; height:40px; line-height:40px; color:#fff;}
+.mall-bar a.pr:hover{ background-color:#00b7ab; color:#fff}
+.mall-bar a.pr.current{ background-color:#00b7ab; color:#fff}
+.mall-bar a.pr em{ display:none; width:90px; padding-right:12px; text-align:center; height:30px; line-height:30px; font-size:12px; top:0; left:-120px; background:url(../../img/bar-img.gif) no-repeat; color:#fff; filter:alpha(opacity=0);-moz-opacity:0;-khtml-opacity:0;opacity:0; z-index:9999;text-overflow:ellipsis; white-space:nowrap; overflow:hidden;}
+.mall-bar .hasBox .bar-clickBox{ width:200px; height:200px; left:-200px; top:0; background-color:#fff;-webkit-box-shadow: 0 0 5px rgba(0,0,0,.4);-moz-box-shadow: 0 0 5px rgba(0,0,0,.4);box-shadow: 0 0 5px rgba(0,0,0,.4);}
+.mall-bar .hasBox .bar-clickBox .bar-box-container{ width:199px; height:198px; border:1px solid #dedede; border-right:none;}
+.mall-bar .hasBox .bar-clickBox .bar-box-container i.bar-arrow{ color:#fff; top:-2px; right:-12px;}
+.mall-bar .hasBox .bar-clickBox .bar-box-container a.clickBox-close{ display:block; width:14px; height:14px; color:#666; top:6px; right:10px;}
+.bar-box-container .bar-box-content{ width:100%; height:100%; overflow:hidden; text-align:left;}
+
+.mall-bar .middle{ position:absolute; width:35px; left:0; bottom:50%;}
+
+#bar-ad{ cursor:pointer; position:relative; width:35px; height:200px;}
+#bar-ad a{ display:block; position:absolute; top:0; right:0;}
+
+
+
+.side-login-box .user-box{width:100%; height:100px;}
+.user-box a{color:#00b7ab;}
+.user-box a:hover{ text-decoration:underline;}
+.user-box .userPic{ width:60px; height:60px; margin:0 auto; border-radius:50%; overflow:hidden;}
+.user-box .userPic img{width:60px; height:60px;}
+.user-box .userName,.user-box .userCompany,.user-box .userIcon{ width:100%; height:24px; line-height:24px; text-align:center; color:#666;}
+.user-box .userName{ margin-top:10px;}
+.user-box .userCompany a{ color:#999;}
+.user-box .userIcon{ font-size:0; margin-top:5px;}
+.user-box .userIcon .sideBarIcon,.user-box .userIcon a{ display:inline-block; *display:inline; *zoom:1; width:30px; font-size:30px;}
+.user-box .userIcon i.userAuth{color:#f00;}
+.user-box .userIcon a i.userAuth{ color:#ededed; vertical-align: middle; font-size:22px;}
+.user-box .userIcon a:hover i.userAuth{color:#ccc; font-size:22px;}
+
+.mall-bar .hasBox.beLogin .bar-clickBox{ width:380px; height:410px; left:-380px;}
+.mall-bar .hasBox.beLogin .bar-clickBox .bar-box-container{ width:380px; height:410px;}
+.mall-bar .hasBox.beLogin .bar-clickBox .bar-box-container .login-iframe{ width:320px; height:350px;overflow:hide;}
+.mall-bar .hasBox.beLogin .bar-clickBox .bar-box-container .login-iframe iframe{ overflow:hidden; width:380px; height:380px; border:none; }
+
+.side-login-box{ padding:20px; color:#666;}
+.side-login-box .userInfo{ margin-left:-12px; color:#fff;}
+.side-login-box .userInfo a{ color:#999;}
+.side-login-box .userInfo a.loginSuccess{ color:#00b7ab; font-weight:700;}
+.side-login-box .userInfo a:hover{ text-decoration:underline;}
+.side-login-box .somebody{display:block; line-height:20px; color:#777;}
+.side-login-box .somebody i{ font-weight:700; color:#00b7ab;}
+.side-login-box .somebody a{color:#00b7ab; text-decoration:underline;}
+.side-login-box ul{ padding-top:10px; color:#999;}
+.side-login-box ul li{ height:28px; line-height:28px;}
+.side-login-box ul li a{ color:#666; padding-left:5px;}
+.side-login-box ul li a:hover{ text-decoration:underline;}
+
+
+
+
+#bar-cart .cart-trigger{ padding:5px 0; cursor:pointer;}
+#bar-cart .cart-trigger:hover,#bar-cart .cart-trigger.current{ background-color:#00b7ab;}
+#bar-cart .cart-name{ display:block; margin-top:5px;}
+#bar-cart .cartPro-num{ position:relative; width:100%; height:35px;}
+#bar-cart .cartPro-num .sideBarIcon{ position:absolute; font-size:27px; top:-5px; right:4px; z-index:9px;}
+#bar-cart .cartPro-num .num{ position:absolute; display:block; width:100%; color:#f00; z-index:99px; top:6px; right:0; text-align:center; font-size:14px; font-weight:700;}
+#bar-cart .cartPro-num .num:hover{color:#00b7ab;}
+#bar-cart .bar-clickBox{ width:340px; height:auto; left:-340px;}
+#bar-cart .bar-clickBox .bar-box-container{ width:339px;height:auto; }
+
+
+
+
+.mall-bar #bar-floor{ width:100%; height:auto;}
+.mall-bar #bar-floor a{ display:block; width:100%; height:30px; font-size:14px; line-height:30px; text-align:center; color:#fff; font-family:Arial, Helvetica, sans-serif;}
+.mall-bar #bar-floor a:hover{ background-color:#00b7ab;}
+.mall-bar #bar-floor a.onscroll{ background-color:#00b7ab;}
+
+
+
+
+#bar-myPath .bar-clickBox{ width:340px; height:auto; left:-340px;}
+#bar-myPath .bar-clickBox .bar-box-container{ width:339px; height:auto; }
+
+
+.bar-box-content .customer-service{ padding:30px 15px;}
+.bar-box-content .customer-service li{ width:80px; height:30px; float:left; margin-right:2px; margin-bottom:5px;}
+.bar-box-content .customer-service li a.qq-inline{ display:block; width:80px; height:30px; font-size:0;text-indent:-9999px;background:url(../../www/qq-inline.gif) no-repeat; background-position:0 0;}
+.bar-box-content .customer-service li a.qq-inline:hover{background:url(../../www/qq-inline.gif) no-repeat; background-position:0 -30px;}
+
+.mall-bar a.backTop{ display:none; width:100%; height:35px; text-align:center; left:0; bottom:35px; color:#999;}
+.mall-bar a.backTop:hover{ background-color:#00b7ab; color:#fff;}
+.mall-bar a.backTop i.sideBarIcon{ display:block; width:35px; height:14px;}
+
+.mall-bar a.bar-close{width:100%; height:35px; text-align:center; left:0; bottom:0; color:#fff;}
+.mall-bar a.bar-close i.sideBarIcon{ display:block; width:35px; height:14px; color:#999}
+.mall-bar a.bar-close:hover i.sideBarIcon{color:#00b7ab;}
+
+#bar-services .bar-box-container{background:url(../../www/qq-box_bg.gif) no-repeat left bottom;}

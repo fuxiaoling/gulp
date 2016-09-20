@@ -39,23 +39,23 @@ fileAttr.prototype.get = function() {
             result = fileDir;
             break;
         case 'modDir':
+            var flog = false,
+                cdir;
             for (var key in compile) {
                 var cPath = compile[key].path,
-                    cPathArr = [],
-                    cdir;
-                cPathArr = cPath.split('/');
-                cdir = cPathArr[0];
-                if (src.indexOf('/'+ cdir +'/') !== -1) {
-                    result = src.substring(0, src.indexOf('/'+ cdir +'/'));
+                    cPathArr = cPath.split('/');
+                if (src.indexOf('/'+ cPathArr[0] +'/') !== -1) {
+                    cdir = cPathArr[0];
+                    flog = true;
                     break;
                 }
             }
+            result = flog ? src.substring(0, src.indexOf('/'+ cdir +'/')) : src.replace(allName, '');
             break;
         default:
             console.log("获取文件属性时发生错误，请检查文件路径是否正确！");
             return false;
     }
-    console.log(result);
     return result;
 };
 fileAttr.prototype.newSrc = function(){
