@@ -20,7 +20,4 @@ require.config({
     var sysShim = requirejs.s.contexts._.config.shim;
     requirejs.s.contexts._.config.paths = newAlias.aliasIntegrate(sysAlias,'amd');
     requirejs.s.contexts._.config.shim = newAlias.shimIntegrate(sysShim,'amd');
-    console.log(requirejs.s.contexts._.config.paths);
-    console.log(requirejs.s.contexts._.config.shim);
 })();
-

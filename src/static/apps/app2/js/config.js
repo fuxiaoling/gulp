@@ -26,5 +26,4 @@ seajs.config({
 (function(){
   var sysAlias = seajs.config().data.alias;
   seajs.config().data.alias = newAlias.aliasIntegrate(sysAlias,'cmd');
-  console.log(seajs.config().data.alias);
 })();
