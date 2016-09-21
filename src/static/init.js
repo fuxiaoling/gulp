@@ -54,7 +54,7 @@ window.ENTRY_CONF = window.ENTRY_CONF || {
 	// 自有资产目录细化路径
 	ASSETSURL : function(){return this.STATIC_FOLDER() + this.ASSETSFOLDER + '/' + this.TYPE() +'/';},
 	// 业务脚本目录
-    APPFOLDER: "apps/app2", 
+    APPFOLDER: "apps/app3", 
   	// 是否合并资源
 	COMBO:false
 }

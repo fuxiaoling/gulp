@@ -1,0 +1,115 @@
+@charset "utf-8";
+
+.login-box {
+    width: 360px;
+    height: 350px;
+    padding: 0 20px;
+    background: #fff;
+    overflow: hidden;
+    margin:0 auto;
+}
+
+
+.login-box .title {
+    font-size: 18px;
+    font-family: "microsoft yahei";
+    font-weight: 700;
+    line-height: 20px;
+    padding: 45px 0 15px 0;
+    color: #555;
+}
+.login-box .title a.fr{
+    font-size: 12px;
+}
+.login-box .title a.fr:hover{
+    color:#e60012;
+    text-decoration: underline;
+}
+
+.login-box .form-item {
+    position: relative;
+    height: 30px;
+    margin-bottom: 10px;
+    padding: 10px 18px;
+    border: 1px solid #dedede;
+    background: #FFF;
+    line-height: 30px;
+    font-size: 14px;
+}
+
+.login-box .form-item .current {
+    z-index: 1;
+    border-color: #aaa;
+}
+
+.login-box .form-item label {
+    display: inline-block;
+    width: 32px;
+    color: #b5b5b5;
+    margin-bottom: 3px;
+}
+
+.login-box .form-item .gay_text {
+    color: #555;
+}
+
+.login-btn {
+    width: 100%;
+    height: 52px;
+    border: 0 none;
+    border-radius: 3px;
+    background: #e60012;
+    font-size: 16px;
+    color: #FFF;
+    cursor: pointer;
+    text-shadow: 1px 1px 1px #e60012;
+    font-family: "Microsoft YaHei";
+    line-height: 52px;
+}
+.login-btn:hover{
+    background: #d72226;
+}
+.login-box .form-item .input{
+    width: 230px;
+    height: 30px;
+    border: 0 none;
+    line-height: 30px;
+    vertical-align: middle;
+    font-family: "Microsoft YaHei";
+    font-size: 14px;
+}
+.login-box .form-item.code{
+    width:100px;
+}
+.login-box .form-item.code .input{
+    width:100px;
+}
+.login-box .form-item.code img{
+    position: absolute;
+    top:13px;
+    left:150px;
+}
+.login-box .form-item.code a{
+    width:120px;
+    line-height: 30px;
+    position: absolute;
+    top:10px;
+    left:250px;
+    font-size: 12px;
+    color:#999;
+}
+.login-box .form-item.code a:hover{
+    text-decoration: underline;
+}
+.login-box a.forget {
+    display: block;
+    width: 80px;
+    height: 20px;
+    line-height: 20px;
+    color: #999;
+    margin-bottom: 10px;
+}
+.login-box .ckmsg{
+    line-height: 40px;
+    color:#e60012;
+}
