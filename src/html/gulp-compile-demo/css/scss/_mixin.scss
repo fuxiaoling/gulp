@@ -1,0 +1,52 @@
+$lte7:true !default;
+
+
+@mixin center{
+	width:888px;
+	margin:0 auto;
+}
+@mixin inline-block {
+	display: inline-block;
+	@if $lte7 {
+		*display: inline;
+		*zoom:1;
+	} 
+}
+@mixin float($float:left){
+	float: $float;
+	@if $lte7 {
+		display: inline;
+	}
+}
+
+@mixin box-shadow($shadow...){
+    -webkit-box-shadow:$shadow;
+    -moz-box-shadow:$shadow;
+    box-shadow:$shadow; 
+}
+
+@mixin triangle($direction:top, $size:16px, $borderColor:#eee) {
+  content:"";
+  height: 0;
+  width: 0;
+  @if $direction == top {
+    border-bottom:$size solid $borderColor;
+    border-left:$size dashed transparent;
+    border-right:$size dashed transparent;
+  } 
+  @else if $direction == right {
+    border-left:$size solid $borderColor;
+    border-top:$size dashed transparent;
+    border-bottom:$size dashed transparent;
+  } 
+  @else if $direction == bottom {
+    border-top:$size solid $borderColor;
+    border-left:$size dashed transparent;
+    border-right:$size dashed transparent;
+  } 
+  @else if $direction == left {
+    border-right:$size solid $borderColor;
+    border-top:$size dashed transparent;
+    border-bottom:$size dashed transparent;
+  }
+}
