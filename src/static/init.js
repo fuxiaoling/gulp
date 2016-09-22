@@ -1,7 +1,6 @@
-/**
- * @desc 站点配置
- */
 window.ENTRY_CONF = window.ENTRY_CONF || {
+    // web域，自动获取当前域
+    SITE_URL: document.location.protocol + "//" + location.hostname + (location.port ? ":" + location.port : "") + "/",
     // 页面运行开始时间
     STIME: new Date().getTime(),
     //识别节点
@@ -31,8 +30,6 @@ window.ENTRY_CONF = window.ENTRY_CONF || {
         var page = this.NODE.getAttribute("data-page")
         return page === '' || page === null ? '' : '/' + page;
     },
-    // web域，自动获取当前域
-    SITE_URL: document.location.protocol + "//" + location.hostname + (location.port ? ":" + location.port : "") + "/",
     // static资源域，优先获取页面定义的static_url
     SITE_STATIC_URL: function() {
         return 'undefined' === typeof static_url || '' === static_url ? this.SITE_URL : static_url + "/"; 
@@ -41,42 +38,30 @@ window.ENTRY_CONF = window.ENTRY_CONF || {
     STATIC_FOLDER: function() {
         return this.SITE_STATIC_URL() === this.SITE_URL ? this.SITE_STATIC_URL() + 'static/' : this.SITE_STATIC_URL(); 
     },
-    // 第三方资源目录-CMD封装
-    CMD_LIBS_FOLDER: "libs/cmd",
-    // 第三方资源目录-AMD封装
-    AMD_LIBS_FOLDER: "libs/amd",
-    // 第三方资源目录-常规
-    NORM_LIBS_FOLDER: "libs/norm",
-    // 第三方资源目录细化路径
-    LIBSURL: function() {
-        if (this.TYPE() === 'cmd') return this.STATIC_FOLDER() + this.CMD_LIBS_FOLDER + '/';
-        else if (this.TYPE() === 'amd') return this.STATIC_FOLDER() + this.AMD_LIBS_FOLDER + '/';
+    // 第三方资源目录细化路径  LIBS_FOLDER
+    LIBS_FOLDER: function() {
+        if (this.TYPE() === 'cmd') return this.STATIC_FOLDER() + 'libs/';
+        else if (this.TYPE() === 'amd') return this.STATIC_FOLDER() + 'libs/';
     },
-    // 自有资产目录
-    ASSETSFOLDER: "assets/js",
     // 自有资产目录细化路径
-    ASSETSURL: function() {
-        return this.STATIC_FOLDER() + this.ASSETSFOLDER + '/' + this.TYPE() + '/'; 
+    ASSETS_FOLDER: function() {
+        return this.STATIC_FOLDER() + 'assets/js/'; 
     },
     // 是否合并资源
     COMBO: false
 };
-/**
- * @desc 入口程序
- */
+//资源路径（全局）
+var _LIBSURL = ENTRY_CONF.LIBS_FOLDER()+ENTRY_CONF.TYPE()+'/';
+var _ASSETSURL = ENTRY_CONF.ASSETS_FOLDER()+ENTRY_CONF.TYPE()+'/';
+var _SYSTEMURL = ENTRY_CONF.STATIC_FOLDER() + ENTRY_CONF.APP() + ENTRY_CONF.MODULE();
+// 入口
 var entry = function() {
     if (!ENTRY_CONF.AUTO_LOAD_SCRIPTS()) { //常规模式跳出
         return false;
     }
     this.stime = ENTRY_CONF.STIME;
-    this.node = ENTRY_CONF.NODE;
-    this.webUrl = ENTRY_CONF.SITE_URL;
-    this.staticfolder = ENTRY_CONF.STATIC_FOLDER();
-    this.CMDFolder = ENTRY_CONF.CMD_LIBS_FOLDER;
-    this.AMDFolder = ENTRY_CONF.AMD_LIBS_FOLDER;
-    this.NORMFolder = ENTRY_CONF.NORM_LIBS_FOLDER;
-    this.assetsFolder = ENTRY_CONF.ASSETSFOLDER;
-    this.appFolder = ENTRY_CONF.APP();
+    this.staticFolder = ENTRY_CONF.STATIC_FOLDER();
+    this.labsFolder = ENTRY_CONF.LIBS_FOLDER();
     this.combo = ENTRY_CONF.COMBO;
     this.type = ENTRY_CONF.TYPE();
     this.app = ENTRY_CONF.APP();
@@ -84,20 +69,15 @@ var entry = function() {
     this.page = ENTRY_CONF.PAGE();
     this.init();
 };
-// 入口
 entry.prototype.init = function() {
     var self = this;
     var scripts = self.getScripts();
-    console.log(scripts);
     self.seriesLoadScripts(scripts, function() {
         return self.callback();
     });
 };
-//获取需要加载的js
 entry.prototype.getScripts = function() {
     var self = this,
-        mod,
-        URI,
         loaderJs,
         comboJs,
         loaderAliasJs,
@@ -106,9 +86,9 @@ entry.prototype.getScripts = function() {
     //加载器脚本 及 合并辅件
     if (self.combo) {
         if (self.type === 'cmd' || self.type === 'CMD') {
-            publicUrl = self.staticfolder + "/??",
-                loaderJs = publicUrl + self.CMDFolder + "/seajs/seajs/2.1.1/sea.js"; //加载器脚本
-            comboJs = "," + self.CMDFolder + "/seajs/seajs-combo/1.0.1/seajs-combo.js"; //加载器脚本
+            publicUrl = self.staticFolder + "/??",
+            loaderJs = publicUrl + "libs/cmd/seajs/seajs/2.1.1/sea.js"; //加载器脚本
+            comboJs = ",libs/cmd/seajs/seajs-combo/1.0.1/seajs-combo.js"; //加载器脚本
             loaderAliasJs = ",alias.js"; //总配置脚本
             loaderConfigJs = "," + self.app + self.module + 'config.js'; //模块配置脚本
             pageJs = "," + self.app + self.module + self.page + '.js'; //业务脚本
@@ -119,23 +99,15 @@ entry.prototype.getScripts = function() {
             return false;
         }
     } else {
-        //uri属性
-        URI = {
-            static: self.staticfolder,
-            cmd: self.staticfolder + self.CMDFolder + '/',
-            amd: self.staticfolder + self.AMDFolder + '/',
-            app: self.staticfolder + self.app + self.module
-        };
         //加载器脚本
-        if (self.type === 'cmd' || self.type === 'CMD') loaderJs = URI.cmd + "seajs/seajs/2.1.1/sea.js";
-        else if (self.type === 'amd' || self.type === 'AMD') loaderJs = URI.amd + 'require/2.2.0/require.min.js';
-        loaderAliasJs = URI.static + "alias.js"; //总配置脚本
-        loaderConfigJs = URI.app + 'config.js'; //模块配置脚本
-        pageJs = URI.app + self.page + '.js'; //业务脚本
+        if (self.type === 'cmd' || self.type === 'CMD') loaderJs = self.labsFolder + "cmd/seajs/seajs/2.1.1/sea.js";
+        else if (self.type === 'amd' || self.type === 'AMD') loaderJs =  self.labsFolder + "amd/require/2.2.0/require.min.js";
+        loaderAliasJs = self.staticFolder + "alias.js"; //总配置脚本
+        loaderConfigJs = self.staticFolder + self.app + self.module + 'config.js'; //模块配置脚本
+        pageJs = self.staticFolder + self.app + self.module + self.page + '.js'; //业务脚本
         return [loaderJs, loaderAliasJs, loaderConfigJs, pageJs]; //返回arr
     }
 };
-//串行顺序加载js
 entry.prototype.seriesLoadScripts = function(scripts, callback) {
     if (typeof(scripts) != "object") var scripts = [scripts];
     var s = new Array(),
@@ -154,13 +126,9 @@ entry.prototype.seriesLoadScripts = function(scripts, callback) {
         };
     recursiveLoad(0);
 };
-//callbak
-entry.prototype.callback = function() {
-    var self = this;
-    console.log('脚本用时：' + (new Date().getTime() - self.stime) + 'ms');
-};
+entry.prototype.callback = function() {};
+//启用
 new entry();
-
 /**
  * @desc console容错
  */

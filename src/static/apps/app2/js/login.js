@@ -1,4 +1,0 @@
-seajs.use([], function() {
-
-    
-});
