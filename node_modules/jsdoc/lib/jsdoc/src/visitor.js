@@ -132,6 +132,7 @@ function findRestParam(params) {
             restParam = param;
             return true;
         }
+        return false;
     });
 
     return restParam;
@@ -158,7 +159,7 @@ function makeRestParamFinisher(parser) {
         }
 
         documentedParams = doclet.params = doclet.params || [];
-        restNode = findRestParam(e.code.node.params);
+        restNode = findRestParam(e.code.node.params || e.code.node.value.params);
 
         if (restNode) {
             for (var i = documentedParams.length - 1; i >= 0; i--) {
@@ -222,8 +223,8 @@ function makeDefaultParamFinisher(parser) {
         }
 
         documentedParams = doclet.params = doclet.params || [];
-        params = e.code.node.params;
-        defaultValues = findDefaultParams(e.code.node.params);
+        params = e.code.node.params || e.code.node.value.params;
+        defaultValues = findDefaultParams(params);
 
         for (var i = 0, j = 0, l = params.length; i < l; i++) {
             // bail out if we ran out of documented params
@@ -622,9 +623,15 @@ Visitor.prototype.makeSymbolFoundEvent = function(node, parser, filename) {
         // like: foo() {}
         // or:   constructor() {}
         case Syntax.MethodDefinition:
+            extras.finishers = [
+                // handle cases where at least one parameter has a default value
+                makeDefaultParamFinisher(parser),
+                // handle rest parameters
+                makeRestParamFinisher(parser)
+            ];
             // for constructors, we attempt to merge the constructor's docs into the class's docs
             if (node.kind === 'constructor') {
-                extras.finishers = [makeConstructorFinisher(parser)];
+                extras.finishers.push( makeConstructorFinisher(parser) );
             }
 
             e = new SymbolFound(node, filename, extras);

@@ -1,7 +1,11 @@
 {
-  "name": "gulp-tool",
+  "name": "gulp-tool-f",
   "version": "1.0.0",
-  "description": "...",
+  "author":{
+     "name":"Franks.T.D",
+     "email":"279811056@qq.com"
+  }, 
+  "description": "for front-end Web development",
   "main": "index.\u001b[C\u001b[C\u001b[D\u001b[Dhtml",
   "dependencies": {},
   "devDependencies": {
@@ -65,6 +69,5 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Franks.T.D",
   "license": "ISC"
 }
