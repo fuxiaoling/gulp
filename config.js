@@ -13,7 +13,7 @@ var path = require('path'),
 		dir: 'src', //开发版本目录
 		htmlDir: 'html', //src下HTML文件目录
 		staticDir: 'static', //src下公共资源目录
-		modules: ['app1','app2'], //项目模块系统
+		modules: ['amd-requireJs-demo','cmd-seaJs-demo','gulp-compile-demo','javascript-optimization-tips-demo'], //项目模块系统
 		root: 'E:/gitwww/demo/cmd/', //本地分支物理路径
 		domain: 'http://localhost:8860', //本地server
 		port: '8861', //gulp代理server端口

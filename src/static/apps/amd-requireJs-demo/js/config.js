@@ -2,9 +2,6 @@
 if(document.getElementById("ENTRY") === null){
   var _SYSTEMURL = static_folder + 'apps/amd-requireJs-demo/js/';
 }
-/*console.log(_LIBSURL);
-console.log(_ASSETSURL);
-console.log(_SYSTEMURL);*/
 require.config({
     // 基础路径
     baseUrl: _LIBSURL,
@@ -27,5 +24,3 @@ require.config({
     requirejs.s.contexts._.config.paths = newAlias.aliasIntegrate(sysAlias,'amd');
     requirejs.s.contexts._.config.shim = newAlias.shimIntegrate(sysShim,'amd');
 })();
-/*console.log(requirejs.s.contexts._.config.paths);
-console.log(requirejs.s.contexts._.config.shim);*/

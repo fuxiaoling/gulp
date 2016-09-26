@@ -2,9 +2,6 @@
 if(document.getElementById("ENTRY") === null){
   var _SYSTEMURL = static_folder + 'apps/cmd-seaJs-demo/js/';
 }
-/*console.log(_LIBSURL);
-console.log(_ASSETSURL);
-console.log(_SYSTEMURL);*/
 seajs.config({
   // 基础路径
   base: _LIBSURL,
@@ -33,4 +30,3 @@ seajs.config({
   var sysAlias = seajs.config().data.alias;
   seajs.config().data.alias = newAlias.aliasIntegrate(sysAlias,'cmd');
 })();
-/*console.log(seajs.config().data.alias);*/

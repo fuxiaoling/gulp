@@ -174,7 +174,7 @@ gulp.task('build', function() {
                 console.log(' 删除 “' + './' + distHtmlPrev + '/' + modItem, '和 ./' + distStaticPrev + '/' + conf.appDir + '/' + modItem + '” 结束');
                 return gulp.src(['./' + distHtmlPrev + '/' + modItem, './' + distStaticPrev + '/' + conf.appDir + '/' + modItem], { read: false }).pipe(clean());
             });
-            /* 非mini */
+            /* 非mini : 编译 */
             gulp.task(modItem + '_html', function() {
                 return build.html(modItem);
             });
