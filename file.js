@@ -10,8 +10,7 @@ fileAttr.prototype.get = function() {
         srcArr,
         allName,
         nameArr,
-        fileDir,
-        realName;
+        fileDir;
     /*获取有效src*/
     src = src.replace(/\\/g, "/");
     src = fileDir = src.replace(csrc.root, "");
@@ -19,15 +18,13 @@ fileAttr.prototype.get = function() {
     srcArr = src.split('/'); //[ 'html', 'app1', 'js', 'jsx', 'index.jsx' ]
     allName = srcArr[srcArr.length - 1].toString(); // index.jsx
     nameArr = allName.split('.'); //切割index.jsx
-    realName = allName.replace('.'+nameArr[nameArr.length - 1],''); //获取到“index”,不能用nameArr[0]
-    /*根据条件返回结果*/
     var result;
     switch(arg){
         case 'srcArr':
             result = srcArr;
             break;
         case 'name':
-            result = realName;
+            result = allName.replace('.'+nameArr[nameArr.length - 1],'');
             break;
         case 'suffix':
             result = nameArr[nameArr.length - 1].toString();

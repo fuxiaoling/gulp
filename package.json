@@ -1,10 +1,10 @@
 {
   "name": "gulp-tool-f",
   "version": "1.0.0",
-  "author":{
-     "name":"Franks.T.D",
-     "email":"279811056@qq.com"
-  }, 
+  "author": {
+    "name": "Franks.T.D",
+    "email": "279811056@qq.com"
+  },
   "description": "for front-end Web development",
   "main": "index.\u001b[C\u001b[C\u001b[D\u001b[Dhtml",
   "dependencies": {},
@@ -47,8 +47,10 @@
     "gulp-rev": "^7.0.0",
     "gulp-sass": "^2.3.1",
     "gulp-seajs-combo": "^1.2.3",
+    "gulp-sftp": "^0.1.5",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stylus": "^2.3.1",
+    "gulp-tap": "^0.1.3",
     "gulp-uglify": "^1.5.3",
     "gulp-useref": "^3.1.0",
     "gulp-util": "^3.0.7",

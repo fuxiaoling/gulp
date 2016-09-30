@@ -1,22 +1,14 @@
-/*!
- * Front-end Development Build Tool - v1.0.0 (2013-09-27)
- * @author Franks.T.D
- * Released under MIT license
- */
-/* 加载工具 */
 var gulp = require('gulp'),
     argv = require('yargs').argv, //参数
     path = require('path'), //路径
     gulpif = require('gulp-if'), //判断
     clean = require('gulp-clean'), //清理
     del = require('del'), //清理
-    runSequence = require('run-sequence'), //控制task顺序执行
+    runSequence = require('run-sequence'), //控制task顺序
     sourcemaps = require('gulp-sourcemaps'), //map
-    lazypipe = require('lazypipe'), //分离stream链至工厂
-    gutil = require('gulp-util'), //gulp工作打印
-    notify = require('gulp-notify'), //gulp工作控制台打印
-    sftp = require('gulp-sftp'), //ftp工具
-    tap = require('gulp-tap'), //打通管道工具
+    lazypipe = require('lazypipe'), //工厂
+    gutil = require('gulp-util'), //打印
+    notify = require('gulp-notify'), //控制台打印
 
     /* 监听、浏览器更新 */
     watch = require("gulp-watch"), //监控
@@ -68,57 +60,47 @@ var gulp = require('gulp'),
     mocha = require('gulp-mocha'), // 测试
 
     /* require业务脚本 */
-    toolConfig = require('./config-tool.js'), //自定义配置
-    appsConfig = require('./config-apps.js'), //自定义配置
-    jsdocConfig = require('./jsdoc.json'), //js文档输出配置
-    sftpConfig = require('./sftp.js'), //sftp上传配置
-    getFile = require('./file.js'); //文档对象处理
+    config = require('./config.js'), //自定义配置
+    jsdocConfig = require('./jsdoc.json'), //文件注释JSON文件
+    getFile = require('./file.js'); //根据src获取文件相关属性
 
-/* 配置改写 */
-var conf = appsConfig.conf();
-    src = appsConfig.srcDir(),
-    srcHtmlPrev = appsConfig.srcHtmlPrev(),
-    srcStaticPrev = appsConfig.srcStaticPrev(),
-    srcStaticAppsPrev = appsConfig.srcStaticAppsPrev(),
-    dist = appsConfig.distDir(),
-    distHtmlPrev = appsConfig.distHtmlPrev(),
-    distStaticPrev = appsConfig.distStaticPrev(),
-    distStaticAppsPrev = appsConfig.distStaticAppsPrev(),
-    docName = jsdocConfig.templates.systemName, //doc文档标题
+/*自定义配置API*/
+var conf = config.conf(),
+    src = config.src(),
+    srcHtmlPrev = config.srcHtmlPrev(),
+    srcStaticPrev = config.srcStaticPrev(),
+    dist = config.dist(),
+    distHtmlPrev = config.distHtmlPrev(),
+    distStaticPrev = config.distStaticPrev();
+
+/*文档API*/
+var docName = jsdocConfig.templates.systemName, //doc文档标题
     docInclude = jsdocConfig.source.include, //doc文档需要引入的文件，多文件构成文档
-    docExclude = jsdocConfig.source.exclude, //doc文档需要排除的文件
-    docOutDir = jsdocConfig.opts.destination; //doc文档输出位置
+    docExclude = jsdocConfig.source.exclude; //doc文档需要排除的文件
+docOutDir = jsdocConfig.opts.destination; //doc文档输出位置
 
-/* 工厂 */
-var useJshint = lazypipe().pipe(jshint).pipe(jshint.reporter, stylish); //js检测工厂
+/*JS检查 工厂*/
+var useJshint = lazypipe()
+    .pipe(jshint)
+    .pipe(jshint.reporter, stylish);
 
-/* help命令 */
+/*help命令*/
 gulp.task('help', function() {
     console.log('---参考命令 | 开始---------------------------------------------');
     console.log('');
-    console.log(' gulp server -d            开启开发server（可无参）');
+    console.log(' gulp server -p            开启生产server（无参为默认本server）');
     console.log('');
-    console.log(' gulp server -p            开启生产server');
+    console.log(' gulp server -d            开启开发server');
     console.log('');
-    console.log(' gulp compile          编译所有toolConfig.compile中的文档至同目录下，需手动移至上级目录');
+    console.log(' gulp compile          编译所有src.compile中文件至同目录下');
     console.log('');
-    console.log(' gulp build            构建全部应用至dist目录');
+    console.log(' gulp build            生产-全部模块打包');
     console.log('');
-    console.log(' gulp build -combo -app appName/all  构建部分应用至dist目录，-combo是否开启合并压缩，-app后接应用名或all');
+    console.log(' gulp build -m moduleName  生产-部分模块打包（默认全部打包）');
     console.log('');
-    console.log(' gulp upload -dir src/dist  上传目录至ftp服务器，-dir后接src或dist');
-    console.log('');
-    console.log(' gulp clean            删除dist目录');
+    console.log(' gulp clean            删除生产文件');
     console.log('');
     console.log('---参考命令 | 结束---------------------------------------------');
-});
-
-/* 设置空白命令和default为server启动命令 */
-gulp.task('default', ['server']);
-
-/* 清空所有dist目录 */
-gulp.task('clean', function() {
-    return del(['./' + dist.dir]);
 });
 
 /*自动监听检查JS*/
@@ -133,31 +115,31 @@ gulp.task('autoCompile', function() {
 
 /* 命令编译模板 */
 gulp.task('compile', function() {
-    var app = argv.m || 'all';
-    return manual.compile(app);
+    var mod = argv.m || 'all';
+    return manual.compile(mod);
 });
 
 /* 命令运行测试 */
 gulp.task('test', function() {
-    var app = argv.m || 'all';
-    return manual.test(app);
+    var mod = argv.m || 'all';
+    return manual.test(mod);
 });
 
 /*启动服务 (2016-6-20 9:31测试通过)*/
 gulp.task('server', ['autoCompile', 'autoJshint'], function() {
-    var evr = argv.d || !argv.p, //开发环境为true，生产环境为false，默认为true
-        dir = conf.distDir,
-        port = conf.distPort,
-        domain = conf.distDomain;
+    var evr = argv.d || !argv.p,
+        dir = dist.dir,
+        port = dist.port,
+        domain = dist.domain;
     if (evr) {
-        dir = conf.srcDir;
-        port = conf.srcPort;
-        domain = conf.srcDomain;
+        dir = src.dir,
+        port = src.port,
+        domain = src.domain;
     }
     browserSync({
         files: dir + "/**",
         notify: false,
-        reloadDelay: toolConfig.reloadDelay,
+        reloadDelay: conf.reloadDelay,
         ui: { //browserSync的设置ui界面
             port: 9999,
             weinre: {
@@ -169,64 +151,52 @@ gulp.task('server', ['autoCompile', 'autoJshint'], function() {
     });
 });
 
-/* 上传至ftp */
-gulp.task('upload', function () {
-    var dir = argv.dir || 'src',
-        _src;
-    if(dir === 'src'){
-        _src = src+'/';
-        remotePath = sftpConfig.srcRemotePath;
-    }else if(dir === 'dist'){
-        _src = dist+'/';
-        remotePath = sftpConfig.distRemotePath;
-    }
-    return gulp.src( _src + '/**' )
-        .pipe(sftp({
-            host: sftpConfig.host,
-            user: sftpConfig.user,
-            port: sftpConfig.port,
-            pass: sftpConfig.pass,
-            remotePath: remotePath
-        }));
+/* 设置空白命令和default为server启动命令 */
+gulp.task('default', ['server']);
+
+/* 清空所有dist目录 */
+gulp.task('clean', function() {
+    return del(['./' + dist.dir]);
 });
 
-/* build命令 */
+/* build命令：项目文件构建处理 */
 gulp.task('build', function() {
-    var app = argv.m || 'all',
-        parts = appsConfig.getApp(app);
+    var mod = argv.m || 'all',
+        parts = manual.getParts(mod);
     for (var key in parts) { //转为线性执行
         (function(key) {
             console.log('');
             console.log('┌-------------------构建“' + parts[key] + '”模块 | 开始------------------------┐');
             console.log('');
-            var appItem = parts[key];
+            var modItem = parts[key];
+            console.log(modItem);
             gulp.task('delDir', function() {
-                console.log(' 删除 “' + './' + distHtmlPrev + '/' + appItem, '和 ./' + distStaticAppsPrev + '/' + appItem + '” 结束');
-                return gulp.src(['./' + distHtmlPrev + '/' + appItem, './' + distStaticAppsPrev + '/' + appItem]).pipe(clean());
+                console.log(' 删除 “' + './' + distHtmlPrev + '/' + modItem, '和 ./' + distStaticPrev + '/' + conf.appDir + '/' + modItem + '” 结束');
+                return gulp.src(['./' + distHtmlPrev + '/' + modItem, './' + distStaticPrev + '/' + conf.appDir + '/' + modItem], { read: false }).pipe(clean());
             });
-            gulp.task(appItem + '_mini_html', function() {
-                return mini.html(appItem);
+            gulp.task(modItem + '_mini_html', function() {
+                return mini.html(modItem);
             });
-            gulp.task(appItem + '_mini_css', function() {
-                return mini.css(appItem);
+            gulp.task(modItem + '_mini_css', function() {
+                return mini.css(modItem);
+            })
+            gulp.task(modItem + '_mini_js', function() {
+                return mini.js(modItem);
+            })
+            gulp.task(modItem + '_html', function() {
+                return build.html(modItem);
             });
-            gulp.task(appItem + '_mini_js', function() {
-                return mini.js(appItem);
+            gulp.task(modItem + '_res', function() {
+                return build.res(modItem);
             });
-            gulp.task(appItem + '_html', function() {
-                return build.html(appItem);
-            });
-            gulp.task(appItem + '_static', function() {
-                return build.static(appItem);
-            });
-            gulp.task(appItem + '_module', function(cb) {
+            gulp.task(modItem + '_module', function(cb) {
                 if (conf.mini) { //构建生产压缩版本
                     runSequence(
-                        'delDir', appItem + '_mini_html', appItem + '_res', appItem + '_mini_css', appItem + '_mini_js', cb
+                        'delDir', modItem + '_mini_html', modItem + '_res', modItem + '_mini_css', modItem + '_mini_js', cb
                     );
                 } else { //构建生产版本
                     runSequence(
-                        'delDir', appItem + '_html', appItem + '_static', cb
+                        'delDir', modItem + '_html', modItem + '_res', cb
                     );
                 }
             })
@@ -248,7 +218,7 @@ gulp.task('static', function() {
     });
     gulp.task('static_res', function() { //复制生成，这里会连带生成apps下的业务脚本，但在整体打包时会删除重新生成。
         gulp.src(_src)
-            .pipe(gulpif('*.js' && conf.jshint, useJshint())) //根据dist.jshint配置开启关闭JS检查
+            .pipe(gulpif('*.js' && dist.jshint, useJshint())) //根据dist.jshint配置开启关闭JS检查
             .pipe(gulpif('*.{jpg,jpeg,png,gif}', imagemin())) //如果是图片，则进行压缩 
             .pipe(gulp.dest(_dist));
     });
@@ -260,111 +230,56 @@ gulp.task('static', function() {
 var build = {
     //构建html(2016-6-22 17:43测试通过,demo页：html/o2o/product-list.html)
     html: function() {
-        var app = arguments[0],
-            _src = srcHtmlPrev + '/' + app + '/**/' + toolConfig.html,
-            _dist = distHtmlPrev + '/' + app;
+        var key = arguments[0],
+            _src = srcHtmlPrev + '/' + key + '/**/' + src.html,
+            _dist = distHtmlPrev + '/' + key;
         var combined = combiner.obj([
             gulp.src(_src),
             cheerio(function($, file) { //进入.html文件
-                var filePath = file.path, //获取的当前文档物理路径
-                    linkDom = $('link'),
-                    scriptDom = $('script'),
-                    imgDom = $('img');
-                //插入构建时间
-                $('body').eq(0).before(toolConfig.buildInfo);
-                //修改CSS路径
+                var pageRoot = file.path;
+                //改写标题
+                $('title').html(conf.title + $('title').html());
+                //修改CSS路径 忽略JS代码中引入CSS文件的情况
                 $('link').each(function(index, el) {
                     var $el = $(this),
                         href = $el.attr('href'),
                         rel = $el.attr('rel');
                     if (href) {
                         if (/icon/ig.test(rel) || rel === 'stylesheet') {
-                            $el.attr('href', getFile.changePath(href, filePath));
+                            $el.attr('href', getFile.changePath(href, pageRoot));
                         }
                     }
                 });
-                //修改js路径
+                //修改js路径 忽略JS代码中引入JS文件的情况
                 $('script').each(function(index, el) {
                     var $el = $(this),
                         href = $el.attr('src');
                     if (href) {
-                        $el.attr('src', getFile.changePath(href, filePath));
+                        $el.attr('src', getFile.changePath(href, pageRoot));
                     }
                 });
-                //修改img路径
+                //修改img路径(支持data-original图片懒加载) 忽略JS代码中引入img文件的情况
                 $('img').each(function(index, el) {
                     var $el = $(this),
                         href = $el.attr('src');
                     if (href) {
-                        $el.attr('src', getFile.changePath(href, filePath));
+                        $el.attr('src', getFile.changePath(href, pageRoot));
                     }
-                    //修改以"data-*"标签的图片
-                    for(var key in toolConfig.img){
-                        (function(key) {
-                            var dataImg = $el.data(toolConfig.img[key]);
-                            if (dataImg !== undefined && dataImg !== '') {
-                                $el.attr('data-' + toolConfig.img[key], getFile.changePath(dataImg, filePath))
-                            }
-                        })(key);
+                    var dataImg = $el.data('original');
+                    if (dataImg !== undefined) {
+                        $el.attr(conf.lazyload, getFile.changePath(dataImg, pageRoot))
                     }
                 });
-                //修改在html中以style方式写入的背景图片，节点需要加入“background-image”
-                $(toolConfig.backgroundImg).each(function(index, el) {
-                    var $el = $(this),
-                        imgHref = $el.css('background-image'),
-                        arr = ["url(",")","/'/g"];
-                    for(var j = 0; j < 3; j++){ //格式化
-                        imgHref = href.replace(arr[j],'');
-                    }
-                    $el.css('background-image', "url(" + getFile.changePath(imgHref, filePath) + ")");
+                //修改在html中以style方式写入的背景图片，节点需要加入“background-image”class名
+                $('.background-image').each(function(index, el) {
+                    var $el = $(this);
+                    var imgHref = $el.css('background-image');
+                    imgHref = imgHref.replace("url(", '');
+                    imgHref = imgHref.replace(")", '');
+                    imgHref = imgHref.replace(/'/g, '');
+                    imgHref = getFile.changePath(imgHref, pageRoot);
+                    $el.css('background-image', "url(" + imgHref + ")");
                 });
-
-                /*
-                //修改CSS路径
-                for(var i = 0, l = linkDom.length; i < l; i++){
-                    var item = linkDom.eq(i),
-                        href = item.attr('href'),
-                        rel = item.attr('rel');
-                    if (href && (/icon/ig.test(rel) || rel === 'stylesheet')) {
-                        item.attr('href', getFile.changePath(href, filePath));
-                    }
-                };
-                //修改js路径
-                for(var i = 0, l = scriptDom.length; i < l; i++){
-                    var item = scriptDom.eq(i),
-                        href = item.attr('src');
-                    if (href) {
-                        item.attr('src', getFile.changePath(href, filePath));
-                    }
-                };
-                //修改img路径
-                for(var i = 0, l = imgDom.length; i < l; i++){
-                    var item = imgDom.eq(i),
-                        href = item.attr('src');
-                    if (href) {
-                        item.attr('src', getFile.changePath(href, filePath));
-                    }
-                    //修改以"data-*"标签的图片
-                    for(var key in toolConfig.img){
-                        (function(key) {
-                            var dataImg = $el.data(toolConfig.img[key]);
-                            if (dataImg !== undefined && dataImg !== '') {
-                                $el.attr('data-' + toolConfig.img[key], getFile.changePath(dataImg, filePath))
-                            }
-                        })(key);
-                    }
-                };
-                //修改在html中以style方式写入的背景图片，节点需要加入“background-image”
-                for(var i = 0, l = backgroundImgDom.length; i < l; i++){
-                    var item = backgroundImgDom.eq(i),
-                        href = item.css('background-image'),
-                        arr = ["url(",")","/'/g"];
-                    for(var j = 0; j < 3; j++){ //格式化
-                        href = href.replace(arr[j],'');
-                    }
-                    item.css('background-image', "url(" + getFile.changePath(imgHref, filePath) + ")");
-                };*/
-
 
             }),
             gulp.dest(_dist)
@@ -372,14 +287,14 @@ var build = {
         combined.on('error', console.error.bind(console));
         return combined;
     },
-    //构建资源
-    static: function() {
-        var res = toolConfig.res,
-            app = arguments[0],
-            staticA = srcStaticPrev + '/' + srcStaticAppsPrev + '/' + app, //static下的资源
-            staticB = srcHtmlPrev + '/' + app, //业务模块下的资源
-            arr = [staticA, staticB];
-        for (var key in arr) {
+    //构建资源(2016-6-23 9:27测试通过)
+    res: function() {
+        var res = src.res,
+            mod = arguments[0],
+            staticR = srcStaticPrev + '/' + conf.appDir + '/' + mod, //static下的资源
+            r = srcHtmlPrev + '/' + mod, //业务模块下的资源
+            rArr = [staticR, r];
+        for (var key in rArr) {
             (function(key) {
                 var thisR = rArr[key];
                 for (var k in res) {
@@ -392,7 +307,7 @@ var build = {
                         gulp.src(_src)
                             .pipe(gulpif('*.js' && dist.jshint, useJshint()))
                             .pipe(gulpif('*.{jpg,jpeg,png,gif}', imagemin()))
-                            .pipe(gulp.dest(distStaticPrev + '/' + conf.appDir + '/' + app + '/'));
+                            .pipe(gulp.dest(distStaticPrev + '/' + conf.appDir + '/' + mod + '/'));
                     })(k)
                 }
             })(key)
@@ -455,6 +370,10 @@ var combo = {
     }
     /*构建mini版本*/
 var mini = {
+    noDistStaticDomain: function() {
+        var dsd = dist.staticDomain;
+        return dsd === '' || dsd === undefined || dsd === null ? true : false;
+    },
     html: function() {
         var userTime = function() {
             var myDate = new Date(),
@@ -466,12 +385,12 @@ var mini = {
                 second = myDate.getSeconds();
             return year + month + day + hours + minutes + second;
         }
-        var staticDomain = appsConfig.hasDistStaticDomain() ? '/' + conf.distStaticDomain : conf.distStaticDir;
+        var staticDomain = this.noDistStaticDomain() ? '/' + dist.staticDir : dist.staticDomain;
         var key = arguments[0],
             _dist = distHtmlPrev + '/' + key,
             _src = srcHtmlPrev + '/' + key;
         var combined = combiner.obj([
-            gulp.src(_src + '/' + toolConfig.html),
+            gulp.src(_src + '/' + src.html),
             cheerio(function($, file) { //进入html文件
                 var pageRoot = file.path, //获取html路径
                     pageName = getFile.name(pageRoot);
@@ -786,12 +705,23 @@ var watch = {
 
 /* 部分手动命令 */
 var manual = {
+    getParts: function() {
+        var mod = arguments[0],
+            modx = mod,
+            modules = src.modules;
+        if (mod.indexOf('/') > -1) {
+            var arr = mod.split('/');
+            modx = arr[0];
+            if (modules.indexOf(modx) === -1) modx = 'all';
+        }
+        return modx === 'all' ? modules : [mod];
+    },
     //手动命令编译模板(2016-6-21 11:26测试通过)
     compile: function() {
         var mod = arguments[0],
             x = src.compile,
             parts = [];
-        parts = this.getApp(mod);
+        parts = this.getParts(mod);
         for (var key in parts) {
             (function(key) {
                 for (var k in x) {
@@ -826,7 +756,7 @@ var manual = {
         var mod = arguments[0],
             x = src.compile,
             parts = [];
-        parts = this.getApp(mod);
+        parts = this.getParts(mod);
         for (var key in parts) {
             (function(key) {
                 gulp.src('test/' + parts[key] + '/**/*.js', { read: false })
