@@ -4,7 +4,7 @@
 var path = require('path'),
 	config = {
 		/*
-			apps应用名
+			项目名/apps应用名,在config.srcHtmlDir下应该存在对应的目录，同时，在config.srcStaticAppsDir下也应该存在对应的目录
 		 */
 		appsItem: [
 			'amd-requireJs-demo',
@@ -14,58 +14,34 @@ var path = require('path'),
 			'react-demo'
 		], 
 		/*
-			开发版本设置
+			开发版本设置 注：手动创建目录后填写下方目录相关配置
 		 */
-		srcDir: 'src', // 开发目录
-		srcHtmlDir: 'html', // HTML根目录，下级为apps的html目录
-		srcStaticDir: 'static', // 资源根目录，下级为apps的资源目录夹、assents资源目录夹、libs资源目录夹
-		srcStaticAppsDir: 'apps', // apps的资源目录，下级为具体应用的资源目录。"static/apps/app1..."
-		srcDomain: 'http://localhost:8860', // 本地服务，如nginx、apache、iis等
-		srcPort: '8861', // 工具代理服务，域为“localhost”，端口为本端口
+		srcDir: 'src', // 开发目录，
+		srcHtmlDir: 'html', // 开发目录下的HTML根目录，下级为各个项目的html目录
+		srcStaticDir: 'static', // 开发目录下的资源根目录，下级为各个项目的资源目录夹、assents资源目录夹、libs资源目录夹
+		srcStaticAppsDir: 'apps', // apps的资源目录，下级为具体应用的资源目录。如："static/apps/app1..."
+		srcDomain: 'http://localhost:8860', // 本地web服务，如nginx、apache、IIS等
+		srcPort: '8861', // 开发目录的web代理服务，域为“localhost”，端口为本端口。即："http://localhost:8860" => "http://localhost:8861"
 		/*
-			生产版本设置
+			生产版本设置 注：填写下方目录相关配置后使用命令自动生成配置的目录
 		 */
 		distDir: 'dist', // 生产目录
-		distHtmlDir: 'html', // HTML根目录，下级为apps的html目录
-		distStaticDir: 'static', // 资源根目录，下级为apps的资源目录夹、assents资源目录夹、libs资源目录夹
-		distStaticAppsDir: 'apps', // apps的资源目录，下级为具体应用的资源目录。"static/apps/app1..."
-		distDomain: 'http://localhost:8870', // 本地服务，如nginx、apache、iis等
-		distStaticDomain: 'http://localhost:8871', // 本地服务，如nginx、apache、iis等
-		distPort: '7700', // 工具代理服务，域为“localhost”，端口为本端口
+		distHtmlDir: 'html', // 生产目录下的HTML根目录，下级为各个项目的html目录
+		distStaticDir: 'static', // 生产目录下的资源根目录，下级为各个项目的资源目录夹、assents资源目录夹、libs资源目录夹
+		distStaticAppsDir: 'apps', // apps的资源目录，下级为具体应用的资源目录。如："static/apps/app1..."
+		distDomain: 'http://localhost:8870', // 生产目录的本地web服务，如nginx、apache、IIS等
+		distStaticDomain: 'http://localhost:8871', // 生产目录的本地资源服务，这里设置是为了构建时将html文档中的资源路径直接替换成资源域服务http://localhost:8871
+		distPort: '8872', // 生产目录的web代理服务，域为“localhost”，端口为本端口。即："http://localhost:8870" => "http://localhost:8872"
 		/*
 			开发时是否执行
 		 */
 		jshint:false, //检查JS
-		jsdoc:true, //JS输出文档
+		jsdoc:true //JS输出文档
 	};
 
 var appsConfig = function() {};
 appsConfig.prototype.conf = function() {
 	return config;
-};
-appsConfig.prototype.srcDir = function() {
-	return config.srcDir;
-};
-appsConfig.prototype.srcHtmlPrev = function() {
-	return config.srcDir + '/' + config.srcHtmlDir;
-};
-appsConfig.prototype.srcStaticPrev = function() {
-	return this.srcHtmlPrev + '/' + config.srcStaticDir;
-};
-appsConfig.prototype.srcStaticAppsPrev = function() {
-	return this.srcStaticPrev + '/' + config.srcStaticAppsDir;
-};
-appsConfig.prototype.distDir = function() {
-	return config.distDir;
-};
-appsConfig.prototype.distHtmlPrev = function() {
-	return config.distDir + '/' + config.distHtmlDir;
-};
-appsConfig.prototype.distStaticPrev = function() {
-	return this.distHtmlPrev + '/' + config.distStaticDir;
-};
-appsConfig.prototype.distStaticAppsPrev = function() {
-	return this.distStaticPrev + '/' + config.distStaticAppsDir;
 };
 /**
  * 获取应用数组，用于构建的目录对象
@@ -84,7 +60,7 @@ appsConfig.prototype.getApp = function(app){
 };
 /**
  * 判断生产版本是否已经设置资源域
- * @return {boolean}     输出模块中的app名或者所有app
+ * @return {boolean}     
  */
 appsConfig.prototype.hasDistStaticDomain = function(){
     var domain = config.distStaticDomain;

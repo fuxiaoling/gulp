@@ -2,15 +2,11 @@
  * 工具配置
  */
 var path = require('path'),
-	newDate = new Date(),
 	config = {
-		root: 'E:/gitwww/demo/cmd/', //工具所在物理路径
+		root: 'E:/gitwww/demo/gulp/', //工具所在物理路径
 		docsDir: 'docs', // JS自动输出文档后存放的目录，相对根目录
-		moduleCombo:'amd', // mini设为true时，配置有效。可选amd/cmd/webpack,小写
 		reloadDelay: 300, //browserSync浏览器自动刷新延时
-		buildInfo: "<!-- build time :" + newDate.toLocaleString()+" -->" //构建文件的title标示
-
-		lazyload: "data-original", //图片懒加载使用的data属性名
+		buildInfo: "<!-- build time :" + new Date().toLocaleString()+" -->", //构建文件的标识，存放于html文档中
 
 		/*
 			静态页面
@@ -18,7 +14,7 @@ var path = require('path'),
 		html: '**/*.html', //HTML下html文件路径后部分
 
 		/*
-			data-* 图片data属性命名
+			data-X 图片data属性命名
 		*/
 		img:[
 			'thumb', // 缩略图 data-thumb
@@ -43,12 +39,12 @@ var path = require('path'),
 			font: 'font/*.{eot,svg,ttf,woff}' //HTML下font路径及后缀
 		},
 		/*
-			需编译的资源
+			需编译的项
 		 */
 		compile: {
-			coffee: { //与path文件后缀保持一致，如“*.coffee”
-				path: 'coffee/**/*.coffee',//文件路径
-				tool: 'coffee({bare: true})'//所需编译器及配置
+			coffee: { //与下方path中的文件后缀保持一致，例如这里必须为“*.coffee”
+				path: 'coffee/**/*.coffee',//文件路径，文件后缀和上级节点名保持一致
+				tool: 'coffee({bare: true})'//所使用编译器的配置，配置后需在gulpfile.js文件中引入该编译器，注意编译器名保持一致
 			},
 			jsx: { 
 				path: 'jsx/**/*.jsx',
@@ -76,7 +72,4 @@ var path = require('path'),
 			}
 		}
 	};
-var toolConfig = function() {
-	return config;
-};
-module.exports = new toolConfig();
+module.exports = config;

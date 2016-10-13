@@ -39,4 +39,8 @@ jspm_packages
 # backup
 bak_09080906
 
+# node_modules
 node_modules
+
+# other
+gulpfile2.js
